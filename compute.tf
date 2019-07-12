@@ -105,7 +105,9 @@ resource "null_resource" "provision_openvpn" {
       "sudo /usr/local/openvpn_as/scripts/sacli --key vpn.server.config_text --value 'cipher AES-256-CBC' ConfigPut",
       "sudo /usr/local/openvpn_as/scripts/sacli --key 'cs.openssl_ciphersuites' --value 'EECDH+CHACHA20:EECDH+AES128:EECDH+AES256:!RSA:!3DES:!MD5' ConfigPut",
       "sudo /usr/local/openvpn_as/scripts/sacli -u ${var.openvpn_user} -k type -v user_connect UserPropPut",
-      "sudo /usr/local/openvpn_as/scripts/sacli -u ${var.openvpn_user} --new_pass '${var.openvpn_password}' SetLocalPassword"
+      "sudo /usr/local/openvpn_as/scripts/sacli -u ${var.openvpn_user} --new_pass '${var.openvpn_password}' SetLocalPassword",
+      "sudo service openvpnas stop",
+      "sudo service openvpnas start"
     ]
   }
 }
