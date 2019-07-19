@@ -14,7 +14,7 @@ variable "owner_tag" {
 }
 
 variable "project_tag" {
-  description = "Project code name or name, e.g. WMP-ECOMM, ANZ-GO"
+  description = "Project code name or name"
   default     = ""
 }
 
@@ -24,7 +24,7 @@ variable "cost_center_tag" {
 }
 
 variable "business_tag" {
-  description = "Business Stream that requires instance(s) e.g. ELT, Academic, Education, Infrastructure, Legal, etc"
+  description = "Business Stream that requires instance(s) e.g. Infrastructure, Legal, etc"
   default     = ""
 }
 
