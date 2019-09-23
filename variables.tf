@@ -3,34 +3,20 @@ variable "create_openvpnas" {
   description = "Boolean create openvpnas true or false"
 }
 
-variable "environment_tag" {
-  description = "Define the type of environment"
-  default     = ""
+variable "tags" {
+  description = "A map of tags to add to all resources."
+  type        = map(string)
+  default     = {}
 }
 
-variable "owner_tag" {
-  description = "Identifies the role that is responsible for the service"
+variable "environment_tag" {
+  description = "Define the type of environment"
   default     = ""
 }
 
 variable "project_tag" {
   description = "Project code name or name"
   default     = ""
-}
-
-variable "cost_center_tag" {
-  description = "Budget code for responsible for the service"
-  default     = ""
-}
-
-variable "business_tag" {
-  description = "Business Stream that requires instance(s) e.g. Infrastructure, Legal, etc"
-  default     = ""
-}
-
-variable "automation_tag" {
-  description = "Tag to highlight services/components have been created with an automation tool"
-  default     = "Created with Terraform"
 }
 
 variable "vpc_id" {

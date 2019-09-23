@@ -17,9 +17,17 @@ resource "aws_key_pair" "openvpn" {
 
 resource "aws_instance" "openvpn" {
   count = var.create_openvpnas ? 1 : 0
-  tags = {
-    Name = "openvpn"
-  }
+  tags = merge(
+    var.tags,
+    { "Name" = lower(
+      format(
+        "openvpn-%s-%s",
+        var.project_tag,
+        var.environment_tag,
+      ),
+      )
+    }
+  )
 
   ami                         = var.ami == "" ? data.aws_ami.openvpn[0].image_id : var.ami
   instance_type               = var.instance_type
@@ -44,7 +52,7 @@ resource "aws_eip" "openvpn_ip" {
   instance = aws_instance.openvpn[0].id
 
   tags = merge(
-    local.common_tags,
+    var.tags,
     { "Name" = lower(
       format(
         "openvpn-eip-%s-%s",
