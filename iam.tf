@@ -7,6 +7,7 @@ resource "aws_iam_role" "openvpn" {
   "Statement": [ { "Effect": "Allow", "Principal": { "Service": "ec2.amazonaws.com" }, "Action": "sts:AssumeRole" } ]
 }
 EOF
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy" "openvpn" {

@@ -3,6 +3,7 @@ resource "aws_security_group" "openvpn" {
   name        = "openvpn_sg"
   description = "Allow traffic needed by openvpn"
   vpc_id      = var.vpc_id
+  tags        = var.tags
 
   // ssh
   ingress {
