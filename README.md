@@ -4,3 +4,9 @@ Applications used within this repo to help with CHANGELOG creation and also chec
 - [git-chglog](https://github.com/git-chglog/git-chglog)
 - [semtag](https://github.com/pnikosis/semtag)
 - [pre-commit](https://pre-commit.com/)
+
+## Terraform Inputs and Outputs
+
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
