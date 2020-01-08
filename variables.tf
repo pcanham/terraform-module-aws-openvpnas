@@ -4,8 +4,8 @@ variable "create_openvpnas" {
 }
 
 variable "tags" {
-  description = "A map of tags to add to all resources."
   type        = map(string)
+  description = "A map of tags to add to all resources."
   default     = {}
 }
 
