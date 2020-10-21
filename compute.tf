@@ -75,19 +75,19 @@ resource "null_resource" "provision_openvpn" {
   }
 
   data "template_file" "openvpnas" {
-    template = "${file("./templates/openvpnas_init.sh.tpl")}"
+    template = file("./templates/openvpnas_init.sh.tpl")
     vars = {
-      certificate_email = ""
-      subdomain_name = ""
-      openvpn_user = ""
-      openvpn_password = ""
+      certificate_email = "jbloggs@example.com"
+      subdomain_name = "vpn.example.com"
+      openvpn_user = "ovpnadmin"
+      openvpn_password = "FrogsAreUltraSecureMe!"
       ldap_enabled = true
-      ldap_name = ""
-      ldap_server = ""
-      ldap_bind_dn = ""
-      ldap_password = ""
-      ldap_base_dn = ""
-      ldap_memberof_filter = ""
+      ldap_name = "127.0.0.1"
+      ldap_server = "EXAMPLE"
+      ldap_bind_dn = "CN=svc_openvpn,OU=Service Accounts,OU=Non-Geographic,OU=Regional Infrastructure Depts,DC=example,DC=local"
+      ldap_password = "CatsAreUltraSecureMe!"
+      ldap_base_dn = "OU=Regions,DC=example,DC=local"
+      ldap_memberof_filter = "memberOf=CN=Dom VPN User,OU=Security Groups,OU=Non-Geographic,OU=Regional Infrastructure Depts,DC=example,DC=local"
     }
   }
 
