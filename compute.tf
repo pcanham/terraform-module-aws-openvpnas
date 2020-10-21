@@ -74,43 +74,26 @@ resource "null_resource" "provision_openvpn" {
     agent = false
   }
 
+  data "template_file" "openvpnas" {
+    template = "${file("./templates/openvpnas_init.sh.tpl")}"
+    vars = {
+      certificate_email = ""
+      subdomain_name = ""
+      openvpn_user = ""
+      openvpn_password = ""
+      ldap_enabled = true
+      ldap_name = ""
+      ldap_server = ""
+      ldap_bind_dn = ""
+      ldap_password = ""
+      ldap_base_dn = ""
+      ldap_memberof_filter = ""
+    }
+  }
+
   provisioner "remote-exec" {
-    inline = [
-      "sleep 60",
-      "sudo systemctl disable apt-daily.service",
-      "sudo systemctl disable apt-daily.timer",
-      "ps aux | grep /var/lib/dpkg/lock | awk {'print $2'} | sudo xargs kill -9",
-      "sudo lsof | grep /var/lib/dpkg/lock | awk {'print $2'} | sudo xargs kill -9",
-      "sudo lsof | grep /usr/bin/dpkg | awk {'print $2'} | sudo xargs kill -9",
-      "sudo rm -f /var/lib/dpkg/lock",
-      "ps aux | grep /var/cache/apt/archives/lock | awk {'print $2'} | sudo xargs kill -9",
-      "ps aux | grep apt | awk {'print $2'} | xargs sudo kill -9",
-      "ps aux | grep /var/cache/apt/archives/lock | awk {'print $2'} | sudo xargs kill -9",
-      "sudo lsof | grep /var/cache/apt/archives/lock | awk {'print $2'} | sudo xargs kill -9",
-      "sudo rm -f /var/cache/apt/archives/lock",
-      "sudo dpkg — configure -a",
-      "sudo apt-get install -y software-properties-common unattended-upgrades",
-      "sudo add-apt-repository -y ppa:certbot/certbot",
-      "sudo apt-get -y update",
-      "sudo apt-get -y install certbot python3-certbot-dns-route53",
-      "sudo service openvpnas stop",
-      "sudo certbot certonly --dns-route53 --non-interactive --agree-tos --email ${var.certificate_email} -d ${var.subdomain_name} --pre-hook 'service openvpnas stop' --post-hook 'service openvpnas start'",
-      "sudo ln -s -f /etc/letsencrypt/live/${var.subdomain_name}/cert.pem /usr/local/openvpn_as/etc/web-ssl/server.crt",
-      "sudo ln -s -f /etc/letsencrypt/live/${var.subdomain_name}/privkey.pem /usr/local/openvpn_as/etc/web-ssl/server.key",
-      "sudo ln -s -f /etc/letsencrypt/live/${var.subdomain_name}/chain.pem /usr/local/openvpn_as/etc/web-ssl/ca.crt",
-      "sudo service openvpnas start",
-      "sudo /usr/local/openvpn_as/scripts/sacli --key vpn.client.tls_version_min --value 1.2 ConfigPut",
-      "sudo /usr/local/openvpn_as/scripts/sacli --key vpn.client.tls_version_min_strict --value true ConfigPut",
-      "sudo /usr/local/openvpn_as/scripts/sacli --key vpn.server.tls_version_min --value 1.2 ConfigPut",
-      "sudo /usr/local/openvpn_as/scripts/sacli --key cs.tls_version_min --value 1.2 ConfigPut",
-      "sudo /usr/local/openvpn_as/scripts/sacli --key cs.tls_version_min_strict --value true ConfigPut",
-      "sudo /usr/local/openvpn_as/scripts/sacli --key vpn.client.config_text --value 'cipher AES-256-CBC' ConfigPut",
-      "sudo /usr/local/openvpn_as/scripts/sacli --key vpn.server.config_text --value 'cipher AES-256-CBC' ConfigPut",
-      "sudo /usr/local/openvpn_as/scripts/sacli --key 'cs.openssl_ciphersuites' --value 'EECDH+CHACHA20:EECDH+AES128:EECDH+AES256:!RSA:!3DES:!MD5' ConfigPut",
-      "sudo /usr/local/openvpn_as/scripts/sacli -u ${var.openvpn_user} -k type -v user_connect UserPropPut",
-      "sudo /usr/local/openvpn_as/scripts/sacli -u ${var.openvpn_user} --new_pass '${var.openvpn_password}' SetLocalPassword",
-      "sudo service openvpnas stop",
-      "sudo service openvpnas start"
-    ]
+    inline = <<EOF
+${template_file.openvpnas.rendered}
+EOF
   }
 }
