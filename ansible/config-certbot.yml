@@ -1,8 +1,8 @@
 ---
 - name: Set certbot with AWS Route 53
-  command: certbot certonly --dns-route53 --non-interactive --agree-tos --email ${certificate_email} -d ${subdomain_name} --pre-hook 'service openvpnas stop' --post-hook 'service openvpnas start'",
+  command: certbot certonly --dns-route53 --non-interactive --agree-tos --email {{ certificate_email }} -d {{ subdomain_name }} --pre-hook 'service openvpnas stop' --post-hook 'service openvpnas start'",
 
 
-ln -s -f /etc/letsencrypt/live/${subdomain_name}/cert.pem /usr/local/openvpn_as/etc/web-ssl/server.crt",
-ln -s -f /etc/letsencrypt/live/${subdomain_name}/privkey.pem /usr/local/openvpn_as/etc/web-ssl/server.key",
-ln -s -f /etc/letsencrypt/live/${subdomain_name}/chain.pem /usr/local/openvpn_as/etc/web-ssl/ca.crt",
+ln -s -f /etc/letsencrypt/live/{{ subdomain_name }}/cert.pem /usr/local/openvpn_as/etc/web-ssl/server.crt",
+ln -s -f /etc/letsencrypt/live/{{ subdomain_name }}/privkey.pem /usr/local/openvpn_as/etc/web-ssl/server.key",
+ln -s -f /etc/letsencrypt/live/{{ subdomain_name }}/chain.pem /usr/local/openvpn_as/etc/web-ssl/ca.crt",
