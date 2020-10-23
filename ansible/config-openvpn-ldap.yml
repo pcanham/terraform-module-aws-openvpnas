@@ -1,0 +1,10 @@
+SCRIPTS="/usr/local/openvpn_as/scripts/"
+$SCRIPTS/sacli --key "auth.module.type" --value "ldap" ConfigPut
+$SCRIPTS/sacli --key "auth.ldap.0.name" --value ${LDAPREALM} ConfigPut
+$SCRIPTS/sacli --key "auth.ldap.0.server.0.host" --value "${LDAPSERVER}" ConfigPut
+$SCRIPTS/sacli --key "auth.ldap.0.bind_dn" --value "${LDAP_BIND_DN}" ConfigPut
+$SCRIPTS/sacli --key "auth.ldap.0.bind_pw" --value ${LDAP_BIND_PW} ConfigPut
+$SCRIPTS/sacli --key "auth.ldap.0.users_base_dn" --value "${LDAP_BASE_DN}" ConfigPut
+$SCRIPTS/sacli --key "auth.ldap.0.uname_attr" --value sAMAccountName ConfigPut
+$SCRIPTS/sacli --key "auth.ldap.0.add_req" --value "${LDAP_MEMBER_FILTER}" ConfigPut
+$SCRIPTS/sacli start

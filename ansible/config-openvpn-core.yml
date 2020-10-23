@@ -1,0 +1,16 @@
+
+SCRIPTS="/usr/local/openvpn_as/scripts/"
+
+## Config
+$SCRIPTS/sacli --key host.name --value $EIP ConfigPut
+
+## Hardening
+$SCRIPTS/sacli --key vpn.client.tls_version_min --value 1.2 ConfigPut
+$SCRIPTS/sacli --key vpn.client.tls_version_min_strict --value true ConfigPut
+$SCRIPTS/sacli --key vpn.server.tls_version_min --value 1.2 ConfigPut
+$SCRIPTS/sacli --key cs.tls_version_min --value 1.2 ConfigPut
+$SCRIPTS/sacli --key cs.tls_version_min_strict --value true ConfigPut
+$SCRIPTS/sacli --key vpn.client.config_text --value 'cipher AES-256-CBC' ConfigPut
+$SCRIPTS/sacli --key vpn.server.config_text --value 'cipher AES-256-CBC' ConfigPut
+$SCRIPTS/sacli --key "cs.openssl_ciphersuites" --value 'EECDH+CHACHA20:EECDH+AES256:!EECDH+AES128:!RSA:!3DES:!MD5:!RC4:!ECDHE-RSA-AES256-SHA:!ECDHE-RSA-AES256-SHA3' ConfigPut
+$SCRIPTS/sacli start
