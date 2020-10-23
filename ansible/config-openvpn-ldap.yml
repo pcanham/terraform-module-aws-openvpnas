@@ -1,10 +1,17 @@
-SCRIPTS="/usr/local/openvpn_as/scripts/"
-$SCRIPTS/sacli --key "auth.module.type" --value "ldap" ConfigPut
-$SCRIPTS/sacli --key "auth.ldap.0.name" --value ${LDAPREALM} ConfigPut
-$SCRIPTS/sacli --key "auth.ldap.0.server.0.host" --value "${LDAPSERVER}" ConfigPut
-$SCRIPTS/sacli --key "auth.ldap.0.bind_dn" --value "${LDAP_BIND_DN}" ConfigPut
-$SCRIPTS/sacli --key "auth.ldap.0.bind_pw" --value ${LDAP_BIND_PW} ConfigPut
-$SCRIPTS/sacli --key "auth.ldap.0.users_base_dn" --value "${LDAP_BASE_DN}" ConfigPut
-$SCRIPTS/sacli --key "auth.ldap.0.uname_attr" --value sAMAccountName ConfigPut
-$SCRIPTS/sacli --key "auth.ldap.0.add_req" --value "${LDAP_MEMBER_FILTER}" ConfigPut
-$SCRIPTS/sacli start
+---
+- name: Enable ldap config
+  command: /usr/local/openvpn_as/scripts/sacli --key "auth.module.type" --value "ldap" ConfigPut
+- name: Set LDAP Name
+  command: /usr/local/openvpn_as/scripts/sacli --key "auth.ldap.0.name" --value ${LDAPREALM} ConfigPut
+- name: Set LDAP Server
+  command: /usr/local/openvpn_as/scripts/sacli --key "auth.ldap.0.server.0.host" --value "${LDAPSERVER}" ConfigPut
+- name: Set LDAP BIND DN
+  command: /usr/local/openvpn_as/scripts/sacli --key "auth.ldap.0.bind_dn" --value "${LDAP_BIND_DN}" ConfigPut
+- name: Set LDAP BIND DN Password
+  command: /usr/local/openvpn_as/scripts/sacli --key "auth.ldap.0.bind_pw" --value ${LDAP_BIND_PW} ConfigPut
+- name: Set LDAP User base DN
+  command: /usr/local/openvpn_as/scripts/sacli --key "auth.ldap.0.users_base_dn" --value "${LDAP_BASE_DN}" ConfigPut
+- name: Set LDAP User attribute
+  command: /usr/local/openvpn_as/scripts/sacli --key "auth.ldap.0.uname_attr" --value sAMAccountName ConfigPut
+- name: Set LDAP Additional Requirement (Member of Filtering)
+  command: /usr/local/openvpn_as/scripts/sacli --key "auth.ldap.0.add_req" --value "${LDAP_MEMBER_FILTER}" ConfigPut
