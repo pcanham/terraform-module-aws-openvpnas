@@ -7,7 +7,7 @@ resource "aws_iam_role" "openvpn" {
 }
 EOF
   tags = merge(
-    local.common_tags,
+    var.tags,
     {
       "SERVICE" = "IAM"
     }

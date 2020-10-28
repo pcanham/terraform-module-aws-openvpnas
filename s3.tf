@@ -6,7 +6,7 @@ resource "aws_s3_bucket" "ansible_bucket" {
   acl           = "private"
   force_destroy = true
   tags = merge(
-    local.common_tags,
+    var.tags,
     {
       "SERVICE" = "STORAGE"
     }
@@ -20,7 +20,7 @@ resource "aws_s3_bucket_object" "openvpn_playbook" {
   source = "ansible/main.yml"
   etag   = filemd5("ansible/main.yml")
   tags = merge(
-    local.common_tags,
+    var.tags,
     {
       "SERVICE" = "STORAGE"
     }
