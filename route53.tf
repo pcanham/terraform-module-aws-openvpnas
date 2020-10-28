@@ -4,7 +4,7 @@ data "aws_route53_zone" "main" {
 
 resource "aws_route53_record" "openvpn" {
   zone_id = data.aws_route53_zone.main.zone_id
-  name    = var.subdomain_name
+  name    = var.openvpnas_dns
   type    = "A"
   ttl     = var.subdomain_ttl
   records = [aws_eip.openvpn_ip.public_ip]

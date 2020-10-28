@@ -1,3 +1,6 @@
+variable "openvpnas_dns" {
+  description = "FQDN of the openvpnas appliance"
+}
 variable "ldap_realm" {
   description = "openvpnas ssh username for logging into the appliance"
   default     = "EXAMPLE"
