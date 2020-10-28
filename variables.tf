@@ -33,6 +33,12 @@ variable "ssh_key" {
   default     = ""
 }
 
+variable "ami_id" {
+  type        = string
+  description = "The ID of the AMI to run otherwise will default to AWS AmazonLinux 2"
+  default     = ""
+}
+
 variable "instance_type" {
   description = "default instance type of the openvpnas appliance."
   default     = "t3.large"
