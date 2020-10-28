@@ -9,22 +9,37 @@ options:
        Type:
          - feat
          - fix
-         - perf
+         - docs
+         - style
          - refactor
+         - perf
+         - test
+         - build
+         - ci
+         - chore
+         - revert
          - deprecated
          - security
   commit_groups:
      title_maps:
        feat: Features
        fix: Bug Fixes
-       perf: Performance Improvements
+       docs: Documentation
+       style: Styles
        refactor: Code Refactoring
+       perf:  Performance Improvements
+       test:  Tests
+       build: Builds
+       ci: Continuous Integrations
+       chore: Chores
+       revert: Reverts
        deprecated: Deprecated warning
        security: Security
   header:
-    pattern: "^(\\w*)\\:\\s(.*)$"
+    pattern: "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$"
     pattern_maps:
       - Type
+      - Scope
       - Subject
   notes:
     keywords:
