@@ -11,7 +11,7 @@ resource "aws_ssm_parameter" "certificate_email" {
   name        = "certificate_email"
   description = "Email Address linked to letsencrypt certificate"
   type        = "SecureString"
-  value       = var.atlantis_github_token
+  value       = var.certificate_email
   overwrite   = true
   tags        = var.tags
 }
@@ -20,7 +20,7 @@ resource "aws_ssm_parameter" "openvpnas_ldap_realm" {
   name        = "openvpnas_ldap_realm"
   description = "LDAP realm for OpenVPN As for"
   type        = "SecureString"
-  value       = var.atlantis_github_token
+  value       = var.ldap_realm
   overwrite   = true
   tags        = local.common_tags
 }
@@ -29,7 +29,7 @@ resource "aws_ssm_parameter" "openvpnas_ldap_server" {
   name        = "openvpnas_ldap_server"
   description = "LDAP Server address for OpenVPN As"
   type        = "SecureString"
-  value       = var.atlantis_github_token
+  value       = var.ldap_server
   overwrite   = true
   tags        = var.tags
 }
@@ -38,7 +38,7 @@ resource "aws_ssm_parameter" "openvpnas_ldap_bind_dn" {
   name        = "openvpnas_ldap_bind_dn"
   description = "LDAP BIND DN for OpenVPN As"
   type        = "SecureString"
-  value       = var.atlantis_github_token
+  value       = var.ldap_bind_dn
   overwrite   = true
   tags        = var.tags
 }
@@ -47,7 +47,7 @@ resource "aws_ssm_parameter" "openvpnas_ldap_bind_pw" {
   name        = "openvpnas_ldap_bind_pw"
   description = "LDAP BIND Password for OpenVPN As"
   type        = "SecureString"
-  value       = var.atlantis_github_token
+  value       = var.ldap_bind_pw
   overwrite   = true
   tags        = var.tags
 }
@@ -56,7 +56,7 @@ resource "aws_ssm_parameter" "openvpnas_ldap_base_dn" {
   name        = "openvpnas_ldap_base_dn"
   description = "LDAP Base DN for Users"
   type        = "SecureString"
-  value       = var.atlantis_github_token
+  value       = var.ldap_base_dn
   overwrite   = true
   tags        = var.tags
 }
