@@ -1,10 +1,20 @@
 data "aws_ami" "openvpn" {
   most_recent = true
-  owners      = ["679593333241"]
+  owners      = ["amazon"]
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name   = "is-public"
+    values = ["true"]
+  }
 
   filter {
     name   = "name"
-    values = ["OpenVPN Access Server 2.8.5*"]
+    values = ["amzn2-ami-hvm-*-gp2"]
   }
 }
 
@@ -44,7 +54,7 @@ USERDATA
 }
 
 resource "aws_eip" "openvpn_ip" {
-  vpc = true
+  vpc      = true
   instance = aws_instance.openvpn.id
 
   tags = merge(
@@ -66,27 +76,27 @@ resource "null_resource" "provision_openvpn" {
   }
 
   connection {
-    type = "ssh"
-    host = aws_eip.openvpn_ip.public_ip
-    user = var.ssh_user
-    port = var.ssh_port
+    type        = "ssh"
+    host        = aws_eip.openvpn_ip.public_ip
+    user        = var.ssh_user
+    port        = var.ssh_port
     private_key = var.private_key
-    agent = false
+    agent       = false
   }
 
   data "template_file" "openvpnas" {
     template = file("./templates/openvpnas_init.sh.tpl")
     vars = {
-      certificate_email = "jbloggs@example.com"
-      subdomain_name = "vpn.example.com"
-      openvpn_user = "ovpnadmin"
-      openvpn_password = "FrogsAreUltraSecureMe!"
-      ldap_enabled = true
-      ldap_name = "127.0.0.1"
-      ldap_server = "EXAMPLE"
-      ldap_bind_dn = "CN=svc_openvpn,OU=Service Accounts,OU=Non-Geographic,OU=Regional Infrastructure Depts,DC=example,DC=local"
-      ldap_password = "CatsAreUltraSecureMe!"
-      ldap_base_dn = "OU=Regions,DC=example,DC=local"
+      certificate_email    = "jbloggs@example.com"
+      subdomain_name       = "vpn.example.com"
+      openvpn_user         = "ovpnadmin"
+      openvpn_password     = "FrogsAreUltraSecureMe!"
+      ldap_enabled         = true
+      ldap_name            = "127.0.0.1"
+      ldap_server          = "EXAMPLE"
+      ldap_bind_dn         = "CN=svc_openvpn,OU=Service Accounts,OU=Non-Geographic,OU=Regional Infrastructure Depts,DC=example,DC=local"
+      ldap_password        = "CatsAreUltraSecureMe!"
+      ldap_base_dn         = "OU=Regions,DC=example,DC=local"
       ldap_memberof_filter = "memberOf=CN=Dom VPN User,OU=Security Groups,OU=Non-Geographic,OU=Regional Infrastructure Depts,DC=example,DC=local"
     }
   }
