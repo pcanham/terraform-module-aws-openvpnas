@@ -1,5 +1,4 @@
 resource "aws_security_group" "openvpn" {
-  count       = var.create_openvpnas ? 1 : 0
   name        = "openvpn_sg"
   description = "Allow traffic needed by openvpn"
   vpc_id      = var.vpc_id
@@ -40,11 +39,10 @@ resource "aws_security_group" "openvpn" {
 
 // open vpn tcp - admin interface
 resource "aws_security_group_rule" "allow_admin-ui_inbound_openvpn" {
-  count             = var.create_openvpnas ? 1 : 0
   type              = "ingress"
   from_port         = var.tcp_port
   to_port           = var.tcp_port
   protocol          = "tcp"
   cidr_blocks       = [var.tcp_cidr]
-  security_group_id = aws_security_group.openvpn[0].id
+  security_group_id = aws_security_group.openvpn.id
 }

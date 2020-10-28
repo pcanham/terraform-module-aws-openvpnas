@@ -1,5 +1,4 @@
 data "aws_ami" "openvpn" {
-  count       = var.create_openvpnas ? 1 : 0
   most_recent = true
   owners      = ["679593333241"]
 
@@ -10,13 +9,11 @@ data "aws_ami" "openvpn" {
 }
 
 resource "aws_key_pair" "openvpn" {
-  count      = var.create_openvpnas ? 1 : 0
   key_name   = "openvpn-key"
   public_key = var.public_key
 }
 
 resource "aws_instance" "openvpn" {
-  count = var.create_openvpnas ? 1 : 0
   tags = merge(
     var.tags,
     { "Name" = lower(
@@ -29,12 +26,12 @@ resource "aws_instance" "openvpn" {
     }
   )
 
-  ami                         = var.ami == "" ? data.aws_ami.openvpn[0].image_id : var.ami
+  ami                         = var.ami == "" ? data.aws_ami.openvpn.image_id : var.ami
   instance_type               = var.instance_type
-  key_name                    = aws_key_pair.openvpn[0].key_name
+  key_name                    = aws_key_pair.openvpn.key_name
   subnet_id                   = var.public_subnet_id[0]
-  vpc_security_group_ids      = [aws_security_group.openvpn[0].id]
-  iam_instance_profile        = aws_iam_instance_profile.openvpn[0].name
+  vpc_security_group_ids      = [aws_security_group.openvpn.id]
+  iam_instance_profile        = aws_iam_instance_profile.openvpn.name
   associate_public_ip_address = true
   source_dest_check           = false
 
@@ -47,9 +44,8 @@ USERDATA
 }
 
 resource "aws_eip" "openvpn_ip" {
-  count = var.create_openvpnas ? 1 : 0
   vpc = true
-  instance = aws_instance.openvpn[0].id
+  instance = aws_instance.openvpn.id
 
   tags = merge(
     var.tags,
@@ -65,14 +61,13 @@ resource "aws_eip" "openvpn_ip" {
 }
 
 resource "null_resource" "provision_openvpn" {
-  count = var.create_openvpnas ? 1 : 0
   triggers = {
-    subdomain_id = aws_route53_record.openvpn[0].id
+    subdomain_id = aws_route53_record.openvpn.id
   }
 
   connection {
     type = "ssh"
-    host = aws_eip.openvpn_ip[0].public_ip
+    host = aws_eip.openvpn_ip.public_ip
     user = var.ssh_user
     port = var.ssh_port
     private_key = var.private_key
