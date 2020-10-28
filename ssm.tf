@@ -61,26 +61,33 @@ resource "aws_ssm_parameter" "openvpnas_ldap_base_dn" {
   tags        = var.tags
 }
 
-resource "aws_ssm_parameter" "openvpnas_ldap_additional_params" {
+resource "aws_ssm_parameter" "openvpnas_ldap_add_req" {
   name        = "openvpnas_ldap_additional_params"
   description = "LDAP Additional parameters for OpenVPN As e.g. filter by memberof"
   type        = "SecureString"
-  value       = var.atlantis_github_token
+  value       = var.ldap_add_req
   overwrite   = true
   tags        = var.tags
 }
 
-
-# Apply our DSC via SSM
 resource "aws_ssm_association" "openvpnas" {
-  name             = "Unknown Method, ansible or shell script"
+  name             = "AWS-ApplyAnsiblePlaybooks"
   association_name = "openvpnas"
-
+  parameters = {
     path = lower(format("https://s3.amazonaws.com/%s/lab/openvpn.yml",
       var.s3_bucket_name
     ))
+    InstallDependencies = "True"
+    ExtraVariables      = "certificate_email=\"{{ lookup('aws_ssm', 'certificate_email' }}\" openvpnas_dns=\"{{ lookup('aws_ssm', 'openvpnas_dns' }}\" ldap_realm=\"{{ lookup('aws_ssm', 'ldap_realm' }}\" ldap_server=\"{{ lookup('aws_ssm', 'ldap_server' }}\" ldap_bind_dn=\"{{ lookup('aws_ssm', 'ldap_bind_dn' }}\" ldap_bind_pw=\"{{ lookup('aws_ssm', 'ldap_bind_pw' }}\" ldap_base_dn=\"{{ lookup('aws_ssm', 'ldap_base_dn' }}\" ldap_add_req=\"{{ lookup('aws_ssm', 'ldap_add_req' }}\""
+    Check               = "True"
+    Verbose             = "-v"
+  }
+  output_location {
+    s3_bucket_name = aws_s3_bucket.ansible_bucket.id
+    s3_key_prefix  = "logs/"
+  }
   targets {
     key    = "InstanceIds"
-    values = [aws_instance.openvpn[0].id]
+    values = [aws_instance.openvpn.id]
   }
 }
