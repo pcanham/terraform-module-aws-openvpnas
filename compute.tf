@@ -18,11 +18,6 @@ data "aws_ami" "openvpn" {
   }
 }
 
-resource "aws_key_pair" "openvpn" {
-  key_name   = "openvpn-key"
-  public_key = var.public_key
-}
-
 resource "aws_instance" "openvpn" {
   tags = merge(
     var.tags,
@@ -38,7 +33,7 @@ resource "aws_instance" "openvpn" {
 
   ami                    = var.ami == "" ? data.aws_ami.openvpn.image_id : var.ami
   instance_type          = var.instance_type
-  key_name               = aws_key_pair.openvpn.key_name
+  key_name               = var.ssh_key == "" ? null : var.ssh_key
   subnet_id              = var.public_subnet_id[0]
   vpc_security_group_ids = [aws_security_group.openvpn.id]
   iam_instance_profile   = aws_iam_instance_profile.openvpn.name
