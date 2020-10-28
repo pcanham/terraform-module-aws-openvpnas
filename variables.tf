@@ -19,14 +19,6 @@ variable "vpc_id" {
   description = "AWS VPC ID"
 }
 
-variable "public_key" {
-  description = "public ssh key for logging into the EC2 instance"
-}
-
-variable "private_key" {
-  description = "private ssh key for logging into the EC2 instance"
-}
-
 variable "route53_zone_name" {
   description = "Route 53 Zone name"
 }
@@ -36,8 +28,9 @@ variable "subdomain_ttl" {
   default     = "60"
 }
 
-variable "ami" {
-  description = "AMI ID of the openvpnas appliance, will be different in each region"
+variable "ssh_key" {
+  description = "SSH Keyname for EC2 instance"
+  default     = ""
 }
 
 variable "instance_type" {
