@@ -1,16 +1,28 @@
 ---
-- name: include variable overrides
-  include_vars: "{{ item }}"
-  with_first_found:
-    - files:
-        - "vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-        - "vars/{{ ansible_distribution }}.yml"
-        - "vars/{{ ansible_os_family }}.yml"
-        - "vars/main.yml"
-  tags:
-    - openvpn
-- include_tasks: install-openvpn.yml
-- include_tasks: install-certbot.yml
-#- include_tasks: config-certbot.yml
-#- include_tasks: config-openvpn-core.yml
-#- include_tasks: config-openvpn-ldap.yml
+- hosts: localhost
+  connection: local
+  gather_facts: true
+  become: yes
+  roles:
+    - role: pcanham.openvpnas
+
+  vars:
+    certificate_email: "{{ lookup('aws_ssm', 'certificate_email') }}"
+    openvpnas_dns: "{{ lookup('aws_ssm', 'openvpnas_dns') }}"
+    ldap_realm: "{{ lookup('aws_ssm', 'openvpnas_ldap_realm') }}"
+    ldap_server: "{{ lookup('aws_ssm', 'openvpnas_ldap_server') }}"
+    ldap_bind_dn: "{{ lookup('aws_ssm', 'openvpnas_ldap_bind_dn') }}"
+    ldap_bind_pw: "{{ lookup('aws_ssm', 'openvpnas_ldap_bind_pw') }}"
+    ldap_base_dn: "{{ lookup('aws_ssm', 'openvpnas_ldap_base_dn') }}"
+    ldap_add_req: "{{ lookup('aws_ssm', 'openvpnas_ldap_additional_params') }}"
+
+  pre_tasks:
+    - name: Verify Ansible meets playbook version requirements.
+      assert:
+        that: "ansible_version.full is version_compare('2.8', '>=')"
+        msg: >
+          "You must update Ansible to at least 2.8 to use these playbooks."
+    - set_fact: ansible_distribution_major_version=6
+      when: ansible_distribution == "Amazon" and ansible_distribution_major_version == "NA"
+    - set_fact: ansible_distribution_major_version=7
+      when: ansible_distribution == "Amazon" and ansible_distribution_major_version == "2"
