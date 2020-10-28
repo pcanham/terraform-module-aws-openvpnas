@@ -2,7 +2,7 @@ resource "aws_ssm_parameter" "openvpnas_dns" {
   name        = "openvpnas_dns"
   description = "OpenVPN AS DNS Address"
   type        = "SecureString"
-  value       = var.atlantis_github_token
+  value       = var.openvpnas_dns
   overwrite   = true
   tags        = var.tags
 }

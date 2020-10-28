@@ -31,10 +31,6 @@ variable "route53_zone_name" {
   description = "Route 53 Zone name"
 }
 
-variable "subdomain_name" {
-  description = "FQDN of the openvpnas appliance"
-}
-
 variable "subdomain_ttl" {
   description = "Route 53 TTL time"
   default     = "60"
