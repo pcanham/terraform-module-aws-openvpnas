@@ -15,8 +15,8 @@ EOF
 }
 
 resource "aws_iam_role_policy" "openvpn" {
-  name = "openvpn_r53"
-  role = aws_iam_role.openvpn.id
+  name   = "openvpn_r53"
+  role   = aws_iam_role.openvpn.id
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -70,6 +70,6 @@ resource "aws_iam_role_policy_attachment" "ssm_role_policy02" {
 }
 
 resource "aws_iam_instance_profile" "openvpn" {
-  name  = "openvpn"
-  role  = aws_iam_role.openvpn.name
+  name = "openvpn"
+  role = aws_iam_role.openvpn.name
 }
