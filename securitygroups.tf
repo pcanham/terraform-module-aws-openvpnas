@@ -4,31 +4,22 @@ resource "aws_security_group" "openvpn" {
   vpc_id      = var.vpc_id
   tags        = var.tags
 
-  // ssh
-  ingress {
-    from_port = var.ssh_port
-    to_port   = var.ssh_port
-    protocol  = "tcp"
-    #tfsec:ignore:AWS008
-    cidr_blocks = [var.ssh_cidr]
-  }
-
   // https
   ingress {
-    from_port = var.https_port
-    to_port   = var.https_port
+    from_port = 443
+    to_port   = 443
     protocol  = "tcp"
     #tfsec:ignore:AWS008
-    cidr_blocks = [var.https_cidr]
+    cidr_blocks = [var.clientaccess_cidr]
   }
 
   // open vpn udp
   ingress {
-    from_port = var.udp_port
-    to_port   = var.udp_port
+    from_port = 1194
+    to_port   = 1194
     protocol  = "udp"
     #tfsec:ignore:AWS008
-    cidr_blocks = [var.udp_cidr]
+    cidr_blocks = [var.clientaccess_cidr]
   }
 
   // all outbound traffic
@@ -45,10 +36,10 @@ resource "aws_security_group" "openvpn" {
 resource "aws_security_group_rule" "allow_admin-ui_inbound_openvpn" {
   description = "Allow access to Admin UI"
   type        = "ingress"
-  from_port   = var.tcp_port
-  to_port     = var.tcp_port
+  from_port   = 943
+  to_port     = 943
   protocol    = "tcp"
   #tfsec:ignore:AWS006
-  cidr_blocks       = [var.tcp_cidr]
+  cidr_blocks       = [var.adminaccess_cidr]
   security_group_id = aws_security_group.openvpn.id
 }
