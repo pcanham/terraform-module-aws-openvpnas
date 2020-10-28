@@ -44,13 +44,6 @@ resource "aws_instance" "openvpn" {
   iam_instance_profile        = aws_iam_instance_profile.openvpn.name
   associate_public_ip_address = true
   source_dest_check           = false
-
-  # `admin_user` and `admin_pw` need to be passed in to the appliance through `user_data`, see docs -->
-  # https://docs.openvpn.net/how-to-tutorialsguides/virtual-platforms/amazon-ec2-appliance-ami-quick-start-guide/
-  user_data = <<USERDATA
-admin_user=${var.admin_user}
-admin_pw=${var.admin_password}
-USERDATA
 }
 
 resource "aws_eip" "openvpn_ip" {
