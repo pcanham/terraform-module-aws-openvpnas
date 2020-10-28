@@ -22,7 +22,7 @@ resource "aws_ssm_parameter" "openvpnas_ldap_realm" {
   type        = "SecureString"
   value       = var.ldap_realm
   overwrite   = true
-  tags        = local.common_tags
+  tags        = var.tags
 }
 
 resource "aws_ssm_parameter" "openvpnas_ldap_server" {
