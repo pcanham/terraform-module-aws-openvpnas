@@ -101,3 +101,7 @@ variable "udp_port" {
 variable "udp_cidr" {
   default = "0.0.0.0/0"
 }
+
+variable "s3_bucket_name" {
+  description = "S3 Bucket name where ansible scripts will be stored"
+}
