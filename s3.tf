@@ -1,8 +1,6 @@
+#tfsec:ignore:AWS002
 resource "aws_s3_bucket" "ansible_bucket" {
-  bucket = lower(format("%s-%s-ansible",
-    random_pet.node.id,
-    var.environment_tag,
-  ))
+  bucket        = var.s3_bucket_name
   acl           = "private"
   force_destroy = true
   tags = merge(
