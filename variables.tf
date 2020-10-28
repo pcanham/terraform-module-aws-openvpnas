@@ -56,19 +56,6 @@ variable "admin_password" {
   description = "Admin password for the openvpnas appliance"
 }
 
-variable "openvpn_user" {
-  description = "General user account username for the openvpnas appliance for being able to VPN into the VPC"
-}
-
-variable "openvpn_password" {
-  description = "General user account password for the openvpnas appliance for being able to VPN into the VPC"
-}
-
-variable "ssh_user" {
-  description = "openvpnas ssh username for logging into the appliance"
-  default     = "openvpnas"
-}
-
 variable "ssh_port" {
   description = ""
   default     = 22
