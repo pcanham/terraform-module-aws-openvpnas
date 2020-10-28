@@ -1,8 +1,4 @@
 ## Variables
-variable "create_openvpnas" {
-  description = "Boolean create openvpnas true or false"
-}
-
 variable "tags" {
   type        = map(string)
   description = "A map of tags to add to all resources."
