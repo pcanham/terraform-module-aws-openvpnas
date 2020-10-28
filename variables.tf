@@ -71,35 +71,18 @@ variable "ssh_user" {
 }
 
 variable "ssh_port" {
-  default = 22
+  description = ""
+  default     = 22
 }
 
-variable "ssh_cidr" {
-  default = "0.0.0.0/0"
+variable "adminaccess_cidr" {
+  description = ""
+  default     = "0.0.0.0/0"
 }
 
-variable "https_port" {
-  default = 443
-}
-
-variable "https_cidr" {
-  default = "0.0.0.0/0"
-}
-
-variable "tcp_port" {
-  default = 943
-}
-
-variable "tcp_cidr" {
-  default = "0.0.0.0/0"
-}
-
-variable "udp_port" {
-  default = 1194
-}
-
-variable "udp_cidr" {
-  default = "0.0.0.0/0"
+variable "clientaccess_cidr" {
+  description = ""
+  default     = "0.0.0.0/0"
 }
 
 variable "s3_bucket_name" {
