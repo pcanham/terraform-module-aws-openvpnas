@@ -69,10 +69,6 @@ variable "openvpn_password" {
   description = "General user account password for the openvpnas appliance for being able to VPN into the VPC"
 }
 
-variable "certificate_email" {
-  description = "email address to link the letsencrypt SSL certificate"
-}
-
 variable "ssh_user" {
   description = "openvpnas ssh username for logging into the appliance"
   default     = "openvpnas"
