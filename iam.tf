@@ -84,12 +84,12 @@ resource "aws_iam_role_policy" "openvpn" {
 
 data "aws_iam_policy_document" "ssm_s3_access" {
   statement {
-    sid       = ""
-    effect    = "Allow"
+    sid    = ""
+    effect = "Allow"
     resources = [
-                  format("%s%s", "arn:aws:s3:::", aws_s3_bucket.ansible_bucket.id),
-                  format("%s%s/*", "arn:aws:s3:::", aws_s3_bucket.ansible_bucket.id)
-                ]
+      format("%s%s", "arn:aws:s3:::", aws_s3_bucket.ansible_bucket.id),
+      format("%s%s/*", "arn:aws:s3:::", aws_s3_bucket.ansible_bucket.id)
+    ]
 
     actions = [
       "s3:GetBucketLocation",
