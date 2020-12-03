@@ -8,6 +8,13 @@ data "aws_iam_policy_document" "openvpn_ec2_assume" {
       type        = "Service"
       identifiers = ["ec2.amazonaws.com"]
     }
+
+    principals {
+      type = "AWS"
+      identifiers = [
+        format("arn:aws:iam::%s:root", var.aws_account_id)
+      ]
+    }
   }
 }
 
@@ -28,6 +35,12 @@ data "aws_iam_policy_document" "iam_role" {
     effect    = "Allow"
     resources = ["*"]
     actions   = ["ec2:AssociateAddress"]
+    principals {
+      type = "AWS"
+      identifiers = [
+        format("arn:aws:iam::%s:root", var.aws_account_id)
+      ]
+    }
   }
 
   statement {
@@ -39,6 +52,12 @@ data "aws_iam_policy_document" "iam_role" {
       "route53:ListHostedZones",
       "route53:GetChange",
     ]
+    principals {
+      type = "AWS"
+      identifiers = [
+        format("arn:aws:iam::%s:root", var.aws_account_id)
+      ]
+    }
   }
 
   statement {
@@ -46,6 +65,13 @@ data "aws_iam_policy_document" "iam_role" {
     effect    = "Allow"
     resources = [format("arn:aws:route53:::hostedzone/%s", data.aws_route53_zone.main.zone_id)]
     actions   = ["route53:ChangeResourceRecordSets"]
+
+    principals {
+      type = "AWS"
+      identifiers = [
+        format("arn:aws:iam::%s:root", var.aws_account_id)
+      ]
+    }
   }
 }
 
@@ -55,11 +81,15 @@ resource "aws_iam_role_policy" "openvpn" {
   policy = data.aws_iam_policy_document.iam_role.json
 }
 
+
 data "aws_iam_policy_document" "ssm_s3_access" {
   statement {
     sid       = ""
     effect    = "Allow"
-    resources = ["*"]
+    resources = [
+                  format("%s%s", "arn:aws:s3:::", aws_s3_bucket.ansible_bucket.id),
+                  format("%s%s/*", "arn:aws:s3:::", aws_s3_bucket.ansible_bucket.id)
+                ]
 
     actions = [
       "s3:GetBucketLocation",
@@ -71,6 +101,12 @@ data "aws_iam_policy_document" "ssm_s3_access" {
       "s3:ListBucket",
       "s3:ListBucketMultipartUploads",
     ]
+    principals {
+      type = "AWS"
+      identifiers = [
+        format("arn:aws:iam::%s:root", var.aws_account_id)
+      ]
+    }
   }
 }
 
