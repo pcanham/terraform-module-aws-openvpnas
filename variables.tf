@@ -19,6 +19,10 @@ variable "vpc_id" {
   description = "AWS VPC ID"
 }
 
+variable "aws_account_id" {
+  description = "AWS Account ID number, needed for implementing IAM permissions"
+}
+
 variable "route53_zone_name" {
   description = "Route 53 Zone name"
 }
