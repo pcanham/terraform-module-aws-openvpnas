@@ -30,7 +30,11 @@ resource "aws_instance" "openvpn" {
       )
     }
   )
-
+  volume_tags = var.tags
+  root_block_device {
+    volume_type = "gp2"
+    encrypted   = true
+  }
   ami                    = var.ami_id == "" ? data.aws_ami.openvpn.image_id : var.ami_id
   instance_type          = var.instance_type
   key_name               = var.ssh_key == "" ? null : var.ssh_key
