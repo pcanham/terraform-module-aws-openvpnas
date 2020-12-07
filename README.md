@@ -18,5 +18,50 @@ Additional applications will need to be installed to your machine if you wish to
 ## Terraform Inputs and Outputs
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | n/a |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| admin\_password | Admin password for the openvpnas appliance | `any` | n/a | yes |
+| admin\_user | Admin username for the openvpnas appliance | `any` | n/a | yes |
+| adminaccess\_cidr | n/a | `string` | `"0.0.0.0/0"` | no |
+| ami\_id | The ID of the AMI to run otherwise will default to AWS AmazonLinux 2 | `string` | `""` | no |
+| certificate\_email | email address to link the letsencrypt SSL certificate | `any` | n/a | yes |
+| clientaccess\_cidr | n/a | `string` | `"0.0.0.0/0"` | no |
+| environment\_tag | Define the type of environment | `string` | `""` | no |
+| instance\_type | default instance type of the openvpnas appliance. | `string` | `"t3.large"` | no |
+| ldap\_add\_req | openvpnas ssh username for logging into the appliance | `string` | `"memberOf=CN=Dom VPN User,OU=Security Groups,DC=ad,DC=example,DC=org"` | no |
+| ldap\_base\_dn | openvpnas ssh username for logging into the appliance | `string` | `"OU=Regions,DC=ad,DC=example,DC=org"` | no |
+| ldap\_bind\_dn | openvpnas ssh username for logging into the appliance | `string` | `"CN=svc_openvpnas,OU=Service Accounts,DC=ad,DC=example,DC=org"` | no |
+| ldap\_bind\_pw | openvpnas ssh username for logging into the appliance | `any` | n/a | yes |
+| ldap\_realm | openvpnas ssh username for logging into the appliance | `string` | `"EXAMPLE"` | no |
+| ldap\_server | openvpnas ssh username for logging into the appliance | `string` | `"127.0.0.1"` | no |
+| openvpnas\_dns | FQDN of the openvpnas appliance | `any` | n/a | yes |
+| project\_tag | Project code name or name | `string` | `""` | no |
+| public\_subnet\_id | Pubic subnet ID where you wish to deploy the openvpnas appliance | `any` | n/a | yes |
+| route53\_zone\_name | Route 53 Zone name | `any` | n/a | yes |
+| s3\_bucket\_name | S3 Bucket name where ansible scripts will be stored | `any` | n/a | yes |
+| ssh\_key | SSH Keyname for EC2 instance | `string` | `""` | no |
+| ssh\_port | n/a | `number` | `22` | no |
+| subdomain\_ttl | Route 53 TTL time | `string` | `"60"` | no |
+| tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
+| vpc\_id | AWS VPC ID | `any` | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| openvpnas\_eip | n/a |
+| openvpnas\_secgrpid | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
