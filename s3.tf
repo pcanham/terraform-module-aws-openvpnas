@@ -22,8 +22,8 @@ resource "aws_s3_bucket" "ansible_bucket" {
 resource "aws_s3_bucket_object" "openvpn_playbook" {
   bucket = aws_s3_bucket.ansible_bucket.id
   key    = "lab/openvpn.yml"
-  source = "ansible/main.yml"
-  etag   = filemd5("ansible/main.yml")
+  source = "${path.module}/ansible/main.yml"
+  etag   = filemd5("${path.module}/ansible/main.yml")
   tags = merge(
     var.tags,
     {
