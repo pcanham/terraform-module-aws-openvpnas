@@ -54,7 +54,7 @@ No requirements.
 | s3\_bucket\_name | S3 Bucket name where ansible scripts will be stored | `any` | n/a | yes |
 | ssh\_key | SSH Keyname for EC2 instance | `string` | `""` | no |
 | ssh\_port | n/a | `number` | `22` | no |
-| ssm\_playbook\_location | Playbook location which is uploaded to S3 | `string` | `"ansible/main.yml"` | no |
+| ssm\_playbook\_location | Playbook location which is uploaded to S3 | `string` | `""` | no |
 | subdomain\_ttl | Route 53 TTL time | `string` | `"60"` | no |
 | tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 | vpc\_id | AWS VPC ID | `any` | n/a | yes |
