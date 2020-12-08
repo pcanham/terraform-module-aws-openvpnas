@@ -78,3 +78,9 @@ variable "clientaccess_cidr" {
 variable "s3_bucket_name" {
   description = "S3 Bucket name where ansible scripts will be stored"
 }
+
+variable "ssm_playbook_location" {
+  type        = string
+  description = "Playbook location which is uploaded to S3"
+  default     = ""
+}
