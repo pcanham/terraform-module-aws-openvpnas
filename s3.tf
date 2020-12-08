@@ -22,8 +22,8 @@ resource "aws_s3_bucket" "ansible_bucket" {
 resource "aws_s3_bucket_object" "openvpn_playbook" {
   bucket = aws_s3_bucket.ansible_bucket.id
   key    = "lab/openvpn.yml"
-  source = "${path.module}/ansible/main.yml"
-  etag   = filemd5("${path.module}/ansible/main.yml")
+  source = var.ssm_playbook_location == "" ? "${path.module}/ansible/main.yml" : var.ssm_playbook_location
+  etag   = var.ssm_playbook_location == "" ? filemd5("${path.module}/ansible/main.yml") : filemd5(var.ssm_playbook_location)
   tags = merge(
     var.tags,
     {
@@ -31,3 +31,5 @@ resource "aws_s3_bucket_object" "openvpn_playbook" {
     }
   )
 }
+
+ssm_playbook_location
