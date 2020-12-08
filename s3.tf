@@ -31,5 +31,3 @@ resource "aws_s3_bucket_object" "openvpn_playbook" {
     }
   )
 }
-
-ssm_playbook_location
