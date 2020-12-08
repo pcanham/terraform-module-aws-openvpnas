@@ -36,6 +36,7 @@ No requirements.
 | admin\_user | Admin username for the openvpnas appliance | `any` | n/a | yes |
 | adminaccess\_cidr | n/a | `string` | `"0.0.0.0/0"` | no |
 | ami\_id | The ID of the AMI to run otherwise will default to AWS AmazonLinux 2 | `string` | `""` | no |
+| aws\_account\_id | AWS Account ID number, needed for implementing IAM permissions | `any` | n/a | yes |
 | certificate\_email | email address to link the letsencrypt SSL certificate | `any` | n/a | yes |
 | clientaccess\_cidr | n/a | `string` | `"0.0.0.0/0"` | no |
 | environment\_tag | Define the type of environment | `string` | `""` | no |
