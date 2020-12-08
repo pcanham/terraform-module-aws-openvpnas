@@ -74,8 +74,8 @@ resource "aws_ssm_association" "openvpnas" {
   name             = "AWS-ApplyAnsiblePlaybooks"
   association_name = "openvpnas"
   parameters = {
-    sourceType = "S3"
-    sourceInfo = jsonencode({ "path" = lower(format("https://s3.amazonaws.com/%s/lab/openvpn.yml",
+    SourceType = "S3"
+    SourceInfo = jsonencode({ "path" = lower(format("https://s3.amazonaws.com/%s/lab/openvpn.yml",
       var.s3_bucket_name
     )) })
     InstallDependencies = "True"
