@@ -18,6 +18,20 @@ resource "aws_s3_bucket" "ansible_bucket" {
   }
 }
 
+# Add ansible requirements to S3
+resource "aws_s3_bucket_object" "openvpn_requirements" {
+  bucket = aws_s3_bucket.ansible_bucket.id
+  key    = "lab/requirements.yml"
+  source = "${path.module}/ansible/requirements.yml"
+  etag   = "${path.module}/ansible/requirements.yml"
+  tags = merge(
+    var.tags,
+    {
+      "SERVICE" = "STORAGE"
+    }
+  )
+}
+
 # Add ansible playbook to S3
 resource "aws_s3_bucket_object" "openvpn_playbook" {
   bucket = aws_s3_bucket.ansible_bucket.id
