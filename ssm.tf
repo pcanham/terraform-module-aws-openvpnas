@@ -79,7 +79,6 @@ resource "aws_ssm_association" "openvpnas" {
       var.s3_bucket_name
     )) })
     InstallDependencies = "True"
-    ExtraVariables      = "certificate_email=\"{{ lookup('aws_ssm', 'certificate_email' }}\" openvpnas_dns=\"{{ lookup('aws_ssm', 'openvpnas_dns' }}\" ldap_realm=\"{{ lookup('aws_ssm', 'ldap_realm' }}\" ldap_server=\"{{ lookup('aws_ssm', 'ldap_server' }}\" ldap_bind_dn=\"{{ lookup('aws_ssm', 'ldap_bind_dn' }}\" ldap_bind_pw=\"{{ lookup('aws_ssm', 'ldap_bind_pw' }}\" ldap_base_dn=\"{{ lookup('aws_ssm', 'ldap_base_dn' }}\" ldap_add_req=\"{{ lookup('aws_ssm', 'ldap_add_req' }}\""
     Check               = "True"
     Verbose             = "-v"
   }
