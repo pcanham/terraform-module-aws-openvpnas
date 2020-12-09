@@ -75,7 +75,7 @@ resource "aws_ssm_association" "openvpnas" {
   association_name = "openvpnas"
   parameters = {
     SourceType = "S3"
-    SourceInfo = jsonencode({ "path" = lower(format("https://s3.amazonaws.com/%s/lab/openvpn.yml",
+    SourceInfo = jsonencode({ "path" = lower(format("https://s3.amazonaws.com/%s/lab/",
       var.s3_bucket_name
     )) })
     InstallDependencies = "True"
