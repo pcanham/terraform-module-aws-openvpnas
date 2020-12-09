@@ -3,22 +3,6 @@
   connection: local
   gather_facts: true
   become: yes
-  roles:
-    - role: pcanham.openvpnas
-  collections:
-    - name: amazon.aws
-      source: https://galaxy.ansible.com
-
-  vars:
-    certificate_email: "{{ lookup('aws_ssm', 'certificate_email') }}"
-    openvpnas_dns: "{{ lookup('aws_ssm', 'openvpnas_dns') }}"
-    ldap_realm: "{{ lookup('aws_ssm', 'openvpnas_ldap_realm') }}"
-    ldap_server: "{{ lookup('aws_ssm', 'openvpnas_ldap_server') }}"
-    ldap_bind_dn: "{{ lookup('aws_ssm', 'openvpnas_ldap_bind_dn') }}"
-    ldap_bind_pw: "{{ lookup('aws_ssm', 'openvpnas_ldap_bind_pw') }}"
-    ldap_base_dn: "{{ lookup('aws_ssm', 'openvpnas_ldap_base_dn') }}"
-    ldap_add_req: "{{ lookup('aws_ssm', 'openvpnas_ldap_additional_params') }}"
-
   pre_tasks:
     - name: Verify Ansible meets playbook version requirements.
       assert:
@@ -37,3 +21,6 @@
         packages:
          - boto3
          - botocore
+  include_tasks:
+    - install-roles.yml
+    - run-role.yml
