@@ -1,18 +1,15 @@
 ---
 - hosts: localhost
-  connection: local
   gather_facts: true
   become: yes
+  vars:
+    aws_region: "eu-west-1"
   pre_tasks:
-    - name: Verify Ansible meets playbook version requirements.
-      assert:
-        that: "ansible_version.full is version_compare('2.8', '>=')"
-        msg: >
-          "You must update Ansible to at least 2.8 to use these playbooks."
-    - set_fact: ansible_distribution_major_version=6
-      when: ansible_distribution == "Amazon" and ansible_distribution_major_version == "NA"
-    - set_fact: ansible_distribution_major_version=7
-      when: ansible_distribution == "Amazon" and ansible_distribution_major_version == "2"
+    - include_tasks: install-roles.yml
+    - name: Install or update pip
+      package:
+        name: "python2-pip"
+        state: present
     - name: PIP | install python library dependancys for amazon.aws collection
       pip:
         name: '{{ packages }}'
@@ -20,7 +17,6 @@
       vars:
         packages:
          - boto3
-         - botocore
-  include_tasks:
-    - install-roles.yml
-    - run-role.yml
+         - botocore<1.20.0,>=1.19.33
+  tasks:
+    - include_tasks: run-role.yml
