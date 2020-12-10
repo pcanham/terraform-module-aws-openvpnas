@@ -81,6 +81,6 @@ variable "s3_bucket_name" {
 
 variable "ssm_playbook_location" {
   type        = string
-  description = "Playbook location which is uploaded to S3"
+  description = "Playbook directory location which is uploaded to S3"
   default     = ""
 }
