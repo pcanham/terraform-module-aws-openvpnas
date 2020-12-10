@@ -1,10 +1,15 @@
 ---
-- hosts: localhost
-  connection: local
-  gather_facts: true
-  become: yes
-  roles:
-    - role: pcanham.openvpnas
+- name: Set default AWS region within boto3
+  ini_file:
+    path: ~/.aws/config
+    section: default
+    option: region
+    value: "{{ aws_region }}"
+    mode: 0655
+    backup: yes
+- name: Run openvpnas Role
+  import_role:
+    name: pcanham.openvpnas
   vars:
     certificate_email: "{{ lookup('aws_ssm', 'certificate_email') }}"
     openvpnas_dns: "{{ lookup('aws_ssm', 'openvpnas_dns') }}"

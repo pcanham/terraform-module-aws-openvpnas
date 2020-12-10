@@ -1,8 +1,9 @@
 ---
 - hosts: localhost
-  connection: local
   gather_facts: true
   become: yes
   tasks:
-    - local_action:
-        command ansible-galaxy install -r requirements.yml
+    - name: Install Ansible Collections
+      command: ansible-galaxy collection install -r requirements.yml
+    - name: Install Ansible Roles
+      command: ansible-galaxy install -r requirements.yml
