@@ -1,4 +1,4 @@
-resource "aws_security_group" "openvp_user" {
+resource "aws_security_group" "openvpn_user" {
   name        = "openvpn_user"
   description = "Allow traffic needed by openvpn"
   vpc_id      = var.vpc_id
