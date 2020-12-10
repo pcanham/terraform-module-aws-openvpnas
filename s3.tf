@@ -18,26 +18,13 @@ resource "aws_s3_bucket" "ansible_bucket" {
   }
 }
 
-# Add ansible requirements to S3
-resource "aws_s3_bucket_object" "openvpn_requirements" {
-  bucket = aws_s3_bucket.ansible_bucket.id
-  key    = "lab/requirements.yml"
-  source = "${path.module}/ansible/requirements.yml"
-  etag   = "${path.module}/ansible/requirements.yml"
-  tags = merge(
-    var.tags,
-    {
-      "SERVICE" = "STORAGE"
-    }
-  )
-}
-
 # Add ansible playbook to S3
 resource "aws_s3_bucket_object" "openvpn_playbook" {
-  bucket = aws_s3_bucket.ansible_bucket.id
-  key    = "lab/openvpn.yml"
-  source = var.ssm_playbook_location == "" ? "${path.module}/ansible/main.yml" : var.ssm_playbook_location
-  etag   = var.ssm_playbook_location == "" ? filemd5("${path.module}/ansible/main.yml") : filemd5(var.ssm_playbook_location)
+  for_each = fileset(var.ssm_playbook_location == "" ? "${path.module}/ansible/" : var.ssm_playbook_location, "**/*.*")
+  bucket   = aws_s3_bucket.ansible_bucket.bucket
+  key      = "lab/${each.value}"
+  source   = var.ssm_playbook_location == "" ? "${path.module}/ansible/${each.value}" : "${var.ssm_playbook_location}/${each.value}"
+  etag     = var.ssm_playbook_location == "" ? filemd5("${path.module}/ansible/${each.value}") : filemd5("${var.ssm_playbook_location}/${each.value}")
   tags = merge(
     var.tags,
     {
