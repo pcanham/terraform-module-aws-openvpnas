@@ -80,7 +80,7 @@ resource "aws_ssm_association" "openvpnas" {
     )) })
     PlaybookFile        = "main.yml"
     InstallDependencies = "True"
-    Check               = "True"
+    Check               = "False"
     Verbose             = "-v"
   }
   output_location {
