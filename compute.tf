@@ -39,7 +39,7 @@ resource "aws_instance" "openvpn" {
   instance_type          = var.instance_type
   key_name               = var.ssh_key == "" ? null : var.ssh_key
   subnet_id              = var.public_subnet_id
-  vpc_security_group_ids = [aws_security_group.openvpn.id]
+  vpc_security_group_ids = [aws_security_group.openvpn_user.id, aws_security_group.openvpn_mgmt.id]
   iam_instance_profile   = aws_iam_instance_profile.openvpn.name
   #tfsec:ignore:AWS012
   associate_public_ip_address = true
