@@ -80,7 +80,7 @@ resource "aws_ssm_association" "openvpnas" {
     )) })
     PlaybookFile        = "main.yml"
     InstallDependencies = "True"
-    Verbose             = "-vvv"
+    Verbose             = "-v"
   }
   output_location {
     s3_bucket_name = aws_s3_bucket.ansible_bucket.id

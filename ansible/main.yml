@@ -7,9 +7,9 @@
   pre_tasks:
     - include_tasks: install-roles.yml
     - name: Install or update pip
-      easy_install:
-        name: pip
-        state: latest
+      package:
+        name: "python2-pip"
+        state: present
     - name: PIP | install python library dependancys for amazon.aws collection
       pip:
         name: '{{ packages }}'
