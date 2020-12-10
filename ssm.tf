@@ -78,6 +78,7 @@ resource "aws_ssm_association" "openvpnas" {
     SourceInfo = jsonencode({ "path" = lower(format("https://s3.amazonaws.com/%s/lab/",
       var.s3_bucket_name
     )) })
+    PlaybookFile        = "main.yml"
     InstallDependencies = "True"
     Check               = "True"
     Verbose             = "-v"
