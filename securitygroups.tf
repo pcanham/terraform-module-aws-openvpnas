@@ -43,3 +43,14 @@ resource "aws_security_group_rule" "allow_admin-ui_inbound_openvpn" {
   cidr_blocks       = [var.adminaccess_cidr]
   security_group_id = aws_security_group.openvpn.id
 }
+
+resource "aws_security_group_rule" "allow_ssh_inbound_openvpn" {
+  description = "Allow access to Server"
+  type        = "ingress"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  #tfsec:ignore:AWS006
+  cidr_blocks       = [var.adminaccess_cidr]
+  security_group_id = aws_security_group.openvpn.id
+}
