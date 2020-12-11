@@ -52,14 +52,6 @@ variable "public_subnet_id" {
   description = "Pubic subnet ID where you wish to deploy the openvpnas appliance"
 }
 
-variable "admin_user" {
-  description = "Admin username for the openvpnas appliance"
-}
-
-variable "admin_password" {
-  description = "Admin password for the openvpnas appliance"
-}
-
 variable "ssh_port" {
   description = ""
   default     = 22
