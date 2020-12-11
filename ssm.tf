@@ -70,6 +70,24 @@ resource "aws_ssm_parameter" "openvpnas_ldap_add_req" {
   tags        = var.tags
 }
 
+resource "aws_ssm_parameter" "openvpnas_admin_user" {
+  name        = "openvpnas_admin_user"
+  description = "OpenVPN Admin User account name"
+  type        = "SecureString"
+  value       = var.admin_user
+  overwrite   = true
+  tags        = var.tags
+}
+
+resource "aws_ssm_parameter" "openvpnas_admin_password" {
+  name        = "openvpnas_admin_password"
+  description = "OpenVPN Admin User password"
+  type        = "SecureString"
+  value       = var.admin_password
+  overwrite   = true
+  tags        = var.tags
+}
+
 resource "aws_ssm_association" "openvpnas" {
   name             = "AWS-ApplyAnsiblePlaybooks"
   association_name = "openvpnas"
@@ -79,6 +97,7 @@ resource "aws_ssm_association" "openvpnas" {
       var.s3_bucket_name
     )) })
     PlaybookFile        = "main.yml"
+    ExtraVariables      = var.admin_creation ? "create_admin_account=True" : "create_admin_account=False"
     InstallDependencies = "True"
     Verbose             = "-v"
   }

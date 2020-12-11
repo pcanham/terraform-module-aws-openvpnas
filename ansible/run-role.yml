@@ -11,6 +11,9 @@
   import_role:
     name: pcanham.openvpnas
   vars:
+    create_admin_account: true
+    admin_user: "{{ lookup('aws_ssm', 'openvpnas_admin_user') }}"
+    admin_password: "{{ lookup('aws_ssm', 'openvpnas_admin_password') }}"
     certificate_email: "{{ lookup('aws_ssm', 'certificate_email') }}"
     openvpnas_dns: "{{ lookup('aws_ssm', 'openvpnas_dns') }}"
     ldap_realm: "{{ lookup('aws_ssm', 'openvpnas_ldap_realm') }}"

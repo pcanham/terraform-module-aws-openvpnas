@@ -24,3 +24,16 @@ variable "ldap_add_req" {
   description = "openvpnas ssh username for logging into the appliance"
   default     = "memberOf=CN=Dom VPN User,OU=Security Groups,DC=ad,DC=example,DC=org"
 }
+variable "admin_creation" {
+  type        = bool
+  description = "Do you wish to create a local admin account"
+  default     = false
+}
+variable "admin_user" {
+  type        = string
+  description = "openvpnas local admin account name"
+}
+variable "admin_password" {
+  type        = string
+  description = "openvpnas local admin account password"
+}
