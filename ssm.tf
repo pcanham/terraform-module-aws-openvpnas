@@ -98,9 +98,9 @@ resource "aws_ssm_association" "openvpnas" {
     )) })
     PlaybookFile = "main.yml"
     ExtraVariables = jsonencode({
-      enable_ldap_config       = var.configure_letsencrypt
-      enable_letencrypt_config = var.configure_ldap
-      create_admin_account     = var.admin_creation
+      enable_ldap_config       = var.configure_letsencrypt ? "True" : "False"
+      enable_letencrypt_config = var.configure_ldap ? "True" : "False"
+      create_admin_account     = var.admin_creation ? "True" : "False"
     })
     InstallDependencies = "True"
     Verbose             = "-v"
