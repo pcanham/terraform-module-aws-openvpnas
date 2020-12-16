@@ -32,13 +32,16 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| admin\_password | Admin password for the openvpnas appliance | `any` | n/a | yes |
-| admin\_user | Admin username for the openvpnas appliance | `any` | n/a | yes |
+| admin\_creation | Do you wish to create a local admin account | `bool` | `false` | no |
+| admin\_password | openvpnas local admin account password | `string` | n/a | yes |
+| admin\_user | openvpnas local admin account name | `string` | n/a | yes |
 | adminaccess\_cidr | n/a | `string` | `"0.0.0.0/0"` | no |
 | ami\_id | The ID of the AMI to run otherwise will default to AWS AmazonLinux 2 | `string` | `""` | no |
 | aws\_account\_id | AWS Account ID number, needed for implementing IAM permissions | `any` | n/a | yes |
 | certificate\_email | email address to link the letsencrypt SSL certificate | `any` | n/a | yes |
 | clientaccess\_cidr | n/a | `string` | `"0.0.0.0/0"` | no |
+| configure\_ldap | Do you wish to enable LDAP configuration | `bool` | `false` | no |
+| configure\_letsencrypt | Do you wish to enable Letsencrupt | `bool` | `false` | no |
 | environment\_tag | Define the type of environment | `string` | `""` | no |
 | instance\_type | default instance type of the openvpnas appliance. | `string` | `"t3.large"` | no |
 | ldap\_add\_req | openvpnas ssh username for logging into the appliance | `string` | `"memberOf=CN=Dom VPN User,OU=Security Groups,DC=ad,DC=example,DC=org"` | no |
@@ -54,7 +57,7 @@ No requirements.
 | s3\_bucket\_name | S3 Bucket name where ansible scripts will be stored | `any` | n/a | yes |
 | ssh\_key | SSH Keyname for EC2 instance | `string` | `""` | no |
 | ssh\_port | n/a | `number` | `22` | no |
-| ssm\_playbook\_location | Playbook location which is uploaded to S3 | `string` | `""` | no |
+| ssm\_playbook\_location | Playbook directory location which is uploaded to S3 | `string` | `""` | no |
 | subdomain\_ttl | Route 53 TTL time | `string` | `"60"` | no |
 | tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 | vpc\_id | AWS VPC ID | `any` | n/a | yes |
@@ -64,6 +67,7 @@ No requirements.
 | Name | Description |
 |------|-------------|
 | openvpnas\_eip | n/a |
-| openvpnas\_secgrpid | n/a |
+| openvpnas\_mgmt\_secgrpid | n/a |
+| openvpnas\_user\_secgrpid | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

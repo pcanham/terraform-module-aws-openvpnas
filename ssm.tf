@@ -96,8 +96,12 @@ resource "aws_ssm_association" "openvpnas" {
     SourceInfo = jsonencode({ "path" = lower(format("https://s3.amazonaws.com/%s/lab/",
       var.s3_bucket_name
     )) })
-    PlaybookFile        = "main.yml"
-    ExtraVariables      = var.admin_creation ? "create_admin_account=True" : "create_admin_account=False"
+    PlaybookFile = "main.yml"
+    ExtraVariables = jsonencode({
+      "enable_ldap_config"       = "${!!var.configure_letsencrypt}"
+      "enable_letencrypt_config" = "${!!var.configure_ldap}"
+      "create_admin_account"     = "${!!var.admin_creation}"
+    })
     InstallDependencies = "True"
     Verbose             = "-v"
   }
