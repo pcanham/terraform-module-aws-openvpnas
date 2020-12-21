@@ -35,11 +35,11 @@ No requirements.
 | admin\_creation | Do you wish to create a local admin account | `bool` | `false` | no |
 | admin\_password | openvpnas local admin account password | `string` | n/a | yes |
 | admin\_user | openvpnas local admin account name | `string` | n/a | yes |
-| adminaccess\_cidr | n/a | `string` | `"0.0.0.0/0"` | no |
+| adminaccess\_cidr | n/a | `list(any)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
 | ami\_id | The ID of the AMI to run otherwise will default to AWS AmazonLinux 2 | `string` | `""` | no |
 | aws\_account\_id | AWS Account ID number, needed for implementing IAM permissions | `any` | n/a | yes |
 | certificate\_email | email address to link the letsencrypt SSL certificate | `any` | n/a | yes |
-| clientaccess\_cidr | n/a | `string` | `"0.0.0.0/0"` | no |
+| clientaccess\_cidr | n/a | `list(any)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
 | configure\_ldap | Do you wish to enable LDAP configuration | `bool` | `false` | no |
 | configure\_letsencrypt | Do you wish to enable Letsencrupt | `bool` | `false` | no |
 | environment\_tag | Define the type of environment | `string` | `""` | no |

@@ -10,7 +10,7 @@ resource "aws_security_group" "openvpn_user" {
     to_port   = 443
     protocol  = "tcp"
     #tfsec:ignore:AWS008
-    cidr_blocks = [var.clientaccess_cidr]
+    cidr_blocks = var.clientaccess_cidr
   }
 
   // open vpn udp
@@ -19,7 +19,7 @@ resource "aws_security_group" "openvpn_user" {
     to_port   = 1194
     protocol  = "udp"
     #tfsec:ignore:AWS008
-    cidr_blocks = [var.clientaccess_cidr]
+    cidr_blocks = var.clientaccess_cidr
   }
 
   // all outbound traffic
@@ -44,7 +44,7 @@ resource "aws_security_group" "openvpn_mgmt" {
     to_port   = 943
     protocol  = "tcp"
     #tfsec:ignore:AWS008
-    cidr_blocks = [var.adminaccess_cidr]
+    cidr_blocks = var.adminaccess_cidr
   }
 
   // open vpn udp
@@ -53,7 +53,7 @@ resource "aws_security_group" "openvpn_mgmt" {
     to_port   = 22
     protocol  = "tcp"
     #tfsec:ignore:AWS008
-    cidr_blocks = [var.adminaccess_cidr]
+    cidr_blocks = var.adminaccess_cidr
   }
 
   // all outbound traffic
