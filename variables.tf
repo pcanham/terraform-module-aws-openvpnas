@@ -58,13 +58,15 @@ variable "ssh_port" {
 }
 
 variable "adminaccess_cidr" {
+  type        = list(any)
   description = ""
-  default     = "0.0.0.0/0"
+  default     = ["0.0.0.0/0"]
 }
 
 variable "clientaccess_cidr" {
+  type        = list(any)
   description = ""
-  default     = "0.0.0.0/0"
+  default     = ["0.0.0.0/0"]
 }
 
 variable "s3_bucket_name" {
