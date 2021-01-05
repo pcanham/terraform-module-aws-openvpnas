@@ -43,7 +43,9 @@ No requirements.
 | configure\_ldap | Do you wish to enable LDAP configuration | `bool` | `false` | no |
 | configure\_letsencrypt | Do you wish to enable Letsencrupt | `bool` | `false` | no |
 | environment\_tag | Define the type of environment | `string` | `""` | no |
-| instance\_type | default instance type of the openvpnas appliance. | `string` | `"t3.large"` | no |
+| instance\_disk\_encrypted | Encrypt the EBS volumes | `bool` | `true` | no |
+| instance\_disk\_type | Data disk type defaults to "gp2" disk type | `string` | `"gp2"` | no |
+| instance\_type | default instance type of the openvpnas appliance. | `string` | `"t3a.large"` | no |
 | ldap\_add\_req | openvpnas ssh username for logging into the appliance | `string` | `"memberOf=CN=Dom VPN User,OU=Security Groups,DC=ad,DC=example,DC=org"` | no |
 | ldap\_base\_dn | openvpnas ssh username for logging into the appliance | `string` | `"OU=Regions,DC=ad,DC=example,DC=org"` | no |
 | ldap\_bind\_dn | openvpnas ssh username for logging into the appliance | `string` | `"CN=svc_openvpnas,OU=Service Accounts,DC=ad,DC=example,DC=org"` | no |

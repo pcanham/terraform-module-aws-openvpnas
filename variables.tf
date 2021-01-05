@@ -45,7 +45,23 @@ variable "ami_id" {
 
 variable "instance_type" {
   description = "default instance type of the openvpnas appliance."
-  default     = "t3.large"
+  default     = "t3a.large"
+}
+
+variable "instance_disk_type" {
+  type        = string
+  description = "Data disk type defaults to \"gp2\" disk type"
+  default     = "gp2"
+  validation {
+    condition     = contains(["gp3", "gp2", "io2", "io1", "standard"], lower(var.instance_disk_type))
+    error_message = "EBS Volume type needs to be: \"gp3\", \"gp2\", \"io2\", \"io1\", \"standard\"."
+  }
+}
+
+variable "instance_disk_encrypted" {
+  type        = bool
+  description = "Encrypt the EBS volumes"
+  default     = true
 }
 
 variable "public_subnet_id" {
