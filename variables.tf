@@ -1,8 +1,4 @@
 ## Variables
-variable "create_openvpnas" {
-  description = "Boolean create openvpnas true or false"
-}
-
 variable "tags" {
   type        = map(string)
   description = "A map of tags to add to all resources."
@@ -23,20 +19,12 @@ variable "vpc_id" {
   description = "AWS VPC ID"
 }
 
-variable "public_key" {
-  description = "public ssh key for logging into the EC2 instance"
-}
-
-variable "private_key" {
-  description = "private ssh key for logging into the EC2 instance"
+variable "aws_account_id" {
+  description = "AWS Account ID number, needed for implementing IAM permissions"
 }
 
 variable "route53_zone_name" {
   description = "Route 53 Zone name"
-}
-
-variable "subdomain_name" {
-  description = "FQDN of the openvpnas appliance"
 }
 
 variable "subdomain_ttl" {
@@ -44,72 +32,65 @@ variable "subdomain_ttl" {
   default     = "60"
 }
 
-variable "ami" {
-  description = "AMI ID of the openvpnas appliance, will be different in each region"
+variable "ssh_key" {
+  description = "SSH Keyname for EC2 instance"
+  default     = ""
+}
+
+variable "ami_id" {
+  type        = string
+  description = "The ID of the AMI to run otherwise will default to AWS AmazonLinux 2"
+  default     = ""
 }
 
 variable "instance_type" {
   description = "default instance type of the openvpnas appliance."
-  default     = "t3.large"
+  default     = "t3a.large"
+}
+
+variable "instance_disk_type" {
+  type        = string
+  description = "Data disk type defaults to \"gp2\" disk type"
+  default     = "gp2"
+  validation {
+    condition     = contains(["gp3", "gp2", "io2", "io1", "standard"], lower(var.instance_disk_type))
+    error_message = "EBS Volume type needs to be: \"gp3\", \"gp2\", \"io2\", \"io1\", \"standard\"."
+  }
+}
+
+variable "instance_disk_encrypted" {
+  type        = bool
+  description = "Encrypt the EBS volumes"
+  default     = true
 }
 
 variable "public_subnet_id" {
   description = "Pubic subnet ID where you wish to deploy the openvpnas appliance"
 }
 
-variable "admin_user" {
-  description = "Admin username for the openvpnas appliance"
-}
-
-variable "admin_password" {
-  description = "Admin password for the openvpnas appliance"
-}
-
-variable "openvpn_user" {
-  description = "General user account username for the openvpnas appliance for being able to VPN into the VPC"
-}
-
-variable "openvpn_password" {
-  description = "General user account password for the openvpnas appliance for being able to VPN into the VPC"
-}
-
-variable "certificate_email" {
-  description = "email address to link the letsencrypt SSL certificate"
-}
-
-variable "ssh_user" {
-  description = "openvpnas ssh username for logging into the appliance"
-  default     = "openvpnas"
-}
-
 variable "ssh_port" {
-  default = 22
+  description = ""
+  default     = 22
 }
 
-variable "ssh_cidr" {
-  default = "0.0.0.0/0"
+variable "adminaccess_cidr" {
+  type        = list(any)
+  description = ""
+  default     = ["0.0.0.0/0"]
 }
 
-variable "https_port" {
-  default = 443
+variable "clientaccess_cidr" {
+  type        = list(any)
+  description = ""
+  default     = ["0.0.0.0/0"]
 }
 
-variable "https_cidr" {
-  default = "0.0.0.0/0"
+variable "s3_bucket_name" {
+  description = "S3 Bucket name where ansible scripts will be stored"
 }
 
-variable "tcp_port" {
-  default = 943
-}
-
-variable "tcp_cidr" {
-  default = "0.0.0.0/0"
-}
-
-variable "udp_port" {
-  default = 1194
-}
-
-variable "udp_cidr" {
-  default = "0.0.0.0/0"
+variable "ssm_playbook_location" {
+  type        = string
+  description = "Playbook directory location which is uploaded to S3"
+  default     = ""
 }
