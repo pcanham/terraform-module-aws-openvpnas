@@ -1,5 +1,5 @@
 ---
-  - name: Install Ansible Collections
-    command: ansible-galaxy collection install -r requirements.yml
-  - name: Install Ansible Roles
-    command: ansible-galaxy install -r requirements.yml
+- name: Install Ansible Collections
+  command: ansible-galaxy collection install -r requirements.yml
+- name: Install Ansible Roles
+  command: ansible-galaxy install -r requirements.yml
