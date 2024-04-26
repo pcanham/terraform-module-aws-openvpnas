@@ -1,0 +1,90 @@
+{
+  "name": "terraform-module-aws-openvpnas",
+  "description": "Terraform AWS openvpnas Module",
+  "version": "0.1.0",
+  "repositoryUrl": "https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas.git",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas.git"
+  },
+  "author": "Paul Canham",
+  "release": {
+    "tagFormat": "${version}",
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "angular",
+          "releaseRules": [
+            {
+              "type": "feat",
+              "release": "patch"
+            },
+            {
+              "type": "hotfix",
+              "release": "patch"
+            },
+            {
+              "type": "patch",
+              "release": "patch"
+            },
+            {
+              "type": "minor",
+              "release": "minor"
+            },
+            {
+              "type": "breaking",
+              "release": "major"
+            },
+            {
+              "type": "test_build",
+              "release": "patch"
+            },
+            {
+              "scope": "no-release",
+              "release": false
+            }
+          ]
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "angular",
+          "parserOpts": {
+            "noteKeywords": [
+              "BREAKING CHANGE",
+              "BREAKING CHANGES",
+              "BREAKING"
+            ]
+          },
+          "writerOpts": {
+            "commitsSort": [
+              "subject",
+              "scope"
+            ]
+          }
+        }
+      ],
+      "@semantic-release/changelog",
+      [
+        "@semantic-release/git",
+        {
+          "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "^12.0.0",
+    "semantic-release": "^23.0.0",
+    "semantic-release-replace-plugin": "^1.2.7",
+    "@commitlint/config-conventional": "^19.0.0",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/release-notes-generator": "^13.0.0",
+    "@semantic-release/git": "^10.0.0"
+  }
+}
