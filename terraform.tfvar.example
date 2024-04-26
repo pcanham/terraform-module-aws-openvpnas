@@ -1,0 +1,8 @@
+environment_tag           = "PRODUCTION"
+environment_landscape_tag = "PRODUCTION"
+owner_tag                 = "JBLOGGS@EXAMPLE.COM"
+project_tag               = "CFG-MGMT"
+service_tag               = "CI-CD"
+cost_centre_tag           = "11223344"
+business_tag              = "TECHNOLOGY"
+automation_tag            = "Created with Terraform"
