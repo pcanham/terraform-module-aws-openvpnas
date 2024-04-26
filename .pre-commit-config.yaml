@@ -9,7 +9,6 @@ repos:
       - id: check-symlinks
       - id: check-case-conflict
       - id: detect-private-key
-      - id: check-merge-conflict
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.1.0
     hooks:
@@ -19,11 +18,6 @@ repos:
     rev: v8.18.2
     hooks:
       - id: gitleaks
-  - repo: https://github.com/terraform-docs/terraform-docs
-    rev: "v0.17.0"
-    hooks:
-      - id: terraform-docs-go
-        args: ["markdown", "table", "--output-file", "README.md", "./"]
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.89.1
     hooks:
@@ -34,8 +28,21 @@ repos:
         args:
           - --args=--skip-dirs="**/.devcontainer"
       - id: terraform_validate
-      - id: terraform_checkov
-  - repo: https://github.com/ansible/ansible-lint
-    rev: v24.2.2
+      # - id: terrascan
+      # - id: terraform_checkov
+  - repo: https://github.com/terraform-docs/terraform-docs
+    rev: "v0.17.0"
     hooks:
-      - id: ansible-lint
+      - id: terraform-docs-go
+        args: ["markdown", "table", "--output-file", "README.md", "./"]
+#  - repo: https://github.com/commitizen-tools/commitizen
+#    rev: v3.13.0
+#    hooks:
+#      - id: commitizen
+#      - id: commitizen-branch
+#  - repo: https://github.com/anderseknert/pre-commit-opa
+#    rev: v1.5.1
+#    hooks:
+#      - id: opa-fmt
+#      - id: opa-check
+#      - id: opa-test

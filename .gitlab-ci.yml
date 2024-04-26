@@ -1,0 +1,5 @@
+---
+include:
+  - component: gitlab.localrealm.net/automation/terraform/terraform-modules/gitlabci-tf-module-template/terraform-module@0.1.20
+    inputs:
+      module_name: aws-openvpnas

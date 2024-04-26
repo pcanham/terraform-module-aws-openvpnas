@@ -6,33 +6,40 @@ variable "tags" {
 }
 
 variable "environment_tag" {
+  type        = string
   description = "Define the type of environment"
   default     = ""
 }
 
 variable "project_tag" {
+  type        = string
   description = "Project code name or name"
   default     = ""
 }
 
 variable "vpc_id" {
+  type        = string
   description = "AWS VPC ID"
 }
 
 variable "aws_account_id" {
+  type        = string
   description = "AWS Account ID number, needed for implementing IAM permissions"
 }
 
 variable "route53_zone_name" {
+  type        = string
   description = "Route 53 Zone name"
 }
 
 variable "subdomain_ttl" {
+  type        = number
   description = "Route 53 TTL time"
   default     = "60"
 }
 
 variable "ssh_key" {
+  type        = string
   description = "SSH Keyname for EC2 instance"
   default     = ""
 }
@@ -44,6 +51,7 @@ variable "ami_id" {
 }
 
 variable "instance_type" {
+  type        = string
   description = "default instance type of the openvpnas appliance."
   default     = "t3a.large"
 }
@@ -65,10 +73,12 @@ variable "instance_disk_encrypted" {
 }
 
 variable "public_subnet_id" {
+  type        = string
   description = "Pubic subnet ID where you wish to deploy the openvpnas appliance"
 }
 
 variable "ssh_port" {
+  type        = number
   description = ""
   default     = 22
 }
@@ -86,6 +96,7 @@ variable "clientaccess_cidr" {
 }
 
 variable "s3_bucket_name" {
+  type        = string
   description = "S3 Bucket name where ansible scripts will be stored"
 }
 
