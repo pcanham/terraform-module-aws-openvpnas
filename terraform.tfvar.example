@@ -6,3 +6,7 @@ service_tag               = "CI-CD"
 cost_centre_tag           = "11223344"
 business_tag              = "TECHNOLOGY"
 automation_tag            = "Created with Terraform"
+
+configure_letsencrypt     = false
+certificate_email         = "JBLOGGS@EXAMPLE.COM"
+openvpnas_dns             = "ovpn.example.com"

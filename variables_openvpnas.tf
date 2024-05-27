@@ -10,6 +10,7 @@ variable "admin_creation" {
 variable "admin_user" {
   type        = string
   description = "openvpnas local admin account name"
+  default     = "admin"
 }
 variable "admin_password" {
   type        = string
