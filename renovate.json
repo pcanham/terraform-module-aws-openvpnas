@@ -2,5 +2,13 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended", "automation/renovate/renovate-config"],
   "addLabels": ["renovatebot", "{{{manager}}}"],
-  "assignees": ["pscanham"]
+  "assignees": ["pscanham"],
+  "packageRules": [
+    {
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch",
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["minor", "patch"]
+    }
+  ]
 }
