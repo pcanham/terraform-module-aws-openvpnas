@@ -77,12 +77,6 @@ variable "public_subnet_id" {
   description = "Pubic subnet ID where you wish to deploy the openvpnas appliance"
 }
 
-variable "ssh_port" {
-  type        = number
-  description = ""
-  default     = 22
-}
-
 variable "adminaccess_cidr" {
   type        = list(any)
   description = ""
