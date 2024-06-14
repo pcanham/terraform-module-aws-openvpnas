@@ -3,14 +3,15 @@ import boto3
 from botocore.exceptions import ClientError
 import json
 
-AWS_REGION = 'us-east-2'
+AWS_REGION = 'eu-west-1'
+ENDPOINT_URL = 'http://localstack:4566'
 
 # logger config
 logger = logging.getLogger()
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s: %(levelname)s: %(message)s')
 
-vpc_client = boto3.client("ec2", region_name=AWS_REGION)
+vpc_client = boto3.client("ec2", region_name=AWS_REGION, endpoint_url=ENDPOINT_URL)
 
 
 def create_default_vpc():
