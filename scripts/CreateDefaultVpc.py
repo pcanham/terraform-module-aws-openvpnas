@@ -32,7 +32,11 @@ def check_for_vpc():
     Check to see whether default VPC exists
     """
     try:
-        response = vpc_client.describe_vpcs(Filters=[{'Name':'isDefault','Values': ['true']},])
+        response = vpc_client.describe_vpcs(
+            Filters=[
+                {"Name": "isDefault", "Values": ["true"]},
+            ]
+        )
     except ClientError:
         logger.exception("Could not find default vpc.")
         pass
