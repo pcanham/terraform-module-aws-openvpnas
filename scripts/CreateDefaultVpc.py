@@ -20,7 +20,6 @@ def create_default_vpc():
     """
     try:
         response = vpc_client.create_default_vpc()
-
     except ClientError:
         logger.exception("Could not create default vpc.")
         raise
