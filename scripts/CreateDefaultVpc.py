@@ -45,9 +45,12 @@ def check_for_vpc():
 
 
 if __name__ == "__main__":
-    logger.info("Creating default VPC...")
+    logger.info("Checking for default VPC...")
     check_vpc = check_for_vpc()
     logger.info(check_vpc)
-    default_vpc = create_default_vpc()
-    default_vpc_id = default_vpc["Vpc"]["VpcId"]
-    logger.info(f"Default VPC is created with VPC ID: {default_vpc_id}")
+    if check_vpc['Vpc']["VpcId"] is None:
+        logger.info("Creating default VPC...")
+        default_vpc = create_default_vpc()
+        logger.info(f"Default VPC is created with VPC ID: {default_vpc["Vpc"]["VpcId"]}")
+    else:
+        logger.info(f"Default VPC is created with VPC ID: {check_vpc['Vpc']["VpcId"]}")
