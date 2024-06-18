@@ -35,14 +35,23 @@ repos:
     hooks:
       - id: terraform-docs-go
         args: ["markdown", "table", "--output-file", "README.md", "./"]
-#  - repo: https://github.com/commitizen-tools/commitizen
-#    rev: v3.13.0
-#    hooks:
-#      - id: commitizen
-#      - id: commitizen-branch
-#  - repo: https://github.com/anderseknert/pre-commit-opa
-#    rev: v1.5.1
-#    hooks:
-#      - id: opa-fmt
-#      - id: opa-check
-#      - id: opa-test
+  #  - repo: https://github.com/commitizen-tools/commitizen
+  #    rev: v3.13.0
+  #    hooks:
+  #      - id: commitizen
+  #      - id: commitizen-branch
+  #  - repo: https://github.com/anderseknert/pre-commit-opa
+  #    rev: v1.5.1
+  #    hooks:
+  #      - id: opa-fmt
+  #      - id: opa-check
+  #      - id: opa-test
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.4.9
+    hooks:
+      # Run the linter.
+      - id: ruff
+        args: [--fix]
+      # Run the formatter.
+      - id: ruff-format
