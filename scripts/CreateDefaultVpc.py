@@ -22,7 +22,7 @@ def create_default_vpc():
         response = vpc_client.create_default_vpc()
     except ClientError:
         logger.exception("Could not create default vpc.")
-        raise
+        pass
     else:
         return response
 
@@ -35,7 +35,7 @@ def check_for_vpc():
         response = vpc_client.describe_vpcs(Filters=[{'Name':'isDefault','Values': ['true']},])
     except ClientError:
         logger.exception("Could not find default vpc.")
-        raise
+        pass
     else:
         return response
 
