@@ -27,8 +27,23 @@ def create_default_vpc():
         return response
 
 
+def check_for_vpc():
+    """
+    Check to see whether default VPC exists
+    """
+    try:
+        response = vpc_client.describe_vpcs(Filters=[{'Name':'isDefault','Values': ['true']},])
+    except ClientError:
+        logger.exception("Could not find default vpc.")
+        raise
+    else:
+        return response
+
+
 if __name__ == "__main__":
     logger.info("Creating default VPC...")
+    check_vpc = check_for_vpc()
+    logger.info(check_vpc)
     default_vpc = create_default_vpc()
     default_vpc_id = default_vpc["Vpc"]["VpcId"]
     logger.info(f"Default VPC is created with VPC ID: {default_vpc_id}")
