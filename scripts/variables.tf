@@ -60,3 +60,23 @@ variable "project_tag" {
   type        = string
   description = "Project code name or name"
 }
+
+variable "public_tier_name" {
+  type        = string
+  description = "Tag value for name of subnet tier"
+}
+
+variable "private01_tier_name" {
+  type        = string
+  description = "Tag value for name of subnet tier"
+}
+
+variable "private02_tier_name" {
+  type        = string
+  description = "Tag value for name of subnet tier"
+}
+
+variable "private03_tier_name" {
+  type        = string
+  description = "Tag value for name of subnet tier"
+}
