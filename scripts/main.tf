@@ -15,7 +15,7 @@ module "network" {
   private_cidr_blocks03 = var.private_cidr_blocks03
 
   tags = merge(
-    local.common_tags,
+    var.tags,
     {
       "SERVICE" = "VPC"
     }
