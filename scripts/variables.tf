@@ -80,3 +80,8 @@ variable "private03_tier_name" {
   type        = string
   description = "Tag value for name of subnet tier"
 }
+
+variable "k8s_clustername" {
+  type        = string
+  description = "EKS/k8s Cluster Name"
+}
