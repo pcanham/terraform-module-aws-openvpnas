@@ -8,7 +8,7 @@ ENDPOINT_URL = "http://localstack:4566"
 # logger config
 logger = logging.getLogger()
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s: %(levelname)s: %(message)s"
+    level=logging.WARN, format="%(asctime)s: %(levelname)s: %(message)s"
 )
 
 vpc_client = boto3.client("ec2", region_name=AWS_REGION, endpoint_url=ENDPOINT_URL)
