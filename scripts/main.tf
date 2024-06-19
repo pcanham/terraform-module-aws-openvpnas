@@ -13,6 +13,10 @@ module "network" {
   private_cidr_blocks01 = var.private_cidr_blocks01
   private_cidr_blocks02 = var.private_cidr_blocks02
   private_cidr_blocks03 = var.private_cidr_blocks03
+  public_tier_name = var.public_tier_name
+  private01_tier_name = var.private01_tier_name
+  private02_tier_name = var.private02_tier_name
+  private03_tier_name = var.private03_tier_name
 
   tags = merge(
     var.tags,
@@ -22,5 +26,5 @@ module "network" {
   )
   environment_tag = var.environment_tag
   project_tag     = var.project_tag
-  k8s_clustername = null
+  k8s_clustername = var.k8s_clustername
 }
