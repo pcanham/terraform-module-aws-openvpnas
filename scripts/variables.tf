@@ -44,3 +44,19 @@ variable "private_cidr_blocks03" {
   type        = list(string)
   description = "CIDR Blocks for Private Subnets"
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "A map of tags to add to all resources."
+  default     = {}
+}
+
+variable "environment_tag" {
+  type        = string
+  description = "Define the type of environment"
+}
+
+variable "project_tag" {
+  type        = string
+  description = "Project code name or name"
+}
