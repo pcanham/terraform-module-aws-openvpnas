@@ -1,0 +1,31 @@
+
+aws_region = "eu-west-1"
+availability_zones = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+master_cidr_block = "10.98.0.0/20"
+nat_gateway = true
+single_nat_gateway = false
+one_nat_gateway_per_az = true
+
+## 4 AZ 4 tier's example
+public_cidr_blocks = ["10.98.0.0/25", "10.98.0.128/25", "10.98.1.0/25", "10.98.1.128/25"]
+private_cidr_blocks01 = ["10.98.2.0/24", "10.98.3.0/24", "10.98.4.0/24", "10.98.5.0/24"]
+private_cidr_blocks02 = ["10.98.6.0/24", "10.98.7.0/24", "10.98.8.0/24", "10.98.9.0/24"]
+private_cidr_blocks03 = ["10.98.10.0/24", "10.98.11.0/24", "10.98.12.0/24", "10.12.13.0/24"]
+
+public_tier_name = "dmz"
+private01_tier_name = "web"
+private02_tier_name = "app"
+private03_tier_name = "data"
+vpcflow_log_accepted_retention = "14"
+vpcflow_log_rejected_retention = "14"
+k8s_clustername = null
+environment_tag = ""
+project_tag = ""
+dhcp_domain_name = ""
+dhcp_domain_name_servers = ["AmazonProvidedDNS"]
+dhcp_ntp_servers = []
+dhcp_netbios_name_servers = []
+dhcp_netbios_node_type = ""
+enable_vpc_s3_endpoint = false
+vpc_enable_dns_support = true
+vpc_enable_dns_hostnames = true
