@@ -48,13 +48,12 @@ if __name__ == "__main__":
     logger.info("Checking for default VPC...")
     check_vpc = check_for_vpc()
     logger.info(check_vpc)
-    
+
     try:
         logger.info(f"Default VPC is created with VPC ID: {check_vpc['Vpc']["VpcId"]}")
-    except KeyError as ke:
+    except KeyError:
         logger.info("Creating default VPC...")
         default_vpc = create_default_vpc()
         logger.info(
             f"Default VPC is created with VPC ID: {default_vpc["Vpc"]["VpcId"]}"
         )
-
