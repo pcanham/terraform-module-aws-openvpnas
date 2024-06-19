@@ -42,11 +42,13 @@ def create_default_vpc_if_not_exist(vpc_client):
     if check_vpc:
         logger.info("Has default VPC. Skipping create.")
         logger.info(check_vpc['VpcId'])
+        print(check_vpc['VpcId'])
         return
 
     logger.info("Does not have default VPC. Creating.")
     vpc = create_default_vpc(vpc_client)
     logger.info("Created VPC {vpc['VpcId']}")
+    print(vpc['VpcId'])
 
 
 if __name__ == "__main__":
