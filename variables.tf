@@ -5,18 +5,6 @@ variable "tags" {
   default     = {}
 }
 
-variable "environment_tag" {
-  type        = string
-  description = "Define the type of environment"
-  default     = ""
-}
-
-variable "project_tag" {
-  type        = string
-  description = "Project code name or name"
-  default     = ""
-}
-
 variable "vpc_id" {
   type        = string
   description = "AWS VPC ID"
