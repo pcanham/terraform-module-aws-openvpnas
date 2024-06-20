@@ -104,4 +104,5 @@ variable "custom_suffix" {
   type        = string
   description = "enter a suffix which will be tagged to all created objects, if not set a random one will be assigned"
   nullable    = true
+  default     = null
 }
