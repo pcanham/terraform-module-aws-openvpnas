@@ -19,7 +19,7 @@ resource "aws_s3_bucket" "ansible_bucket" {
 }
 
 # Add ansible playbook to S3
-resource "aws_s3_bucket" "openvpn_playbook" {
+resource "aws_s3_object" "openvpn_playbook" {
   for_each = fileset(var.ssm_playbook_location == "" ? "${path.module}/ansible/" : var.ssm_playbook_location, "**/*.*")
   bucket   = aws_s3_bucket.ansible_bucket.bucket
   key      = "lab/${each.value}"
