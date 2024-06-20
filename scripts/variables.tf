@@ -19,12 +19,6 @@ variable "nat_gateway" {
   default     = false
 }
 
-variable "vpc_id" {
-  type        = string
-  description = "AWS VPC ID"
-  default     = ""
-}
-
 variable "public_cidr_blocks" {
   type        = list(string)
   description = "CIDR Blocks for Public Subnets"
