@@ -24,12 +24,16 @@ Additional applications will need to be installed to your machine if you wish to
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.54.1 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | 2.5.1 |
+| <a name="requirement_null"></a> [null](#requirement\_null) | 3.2.2 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | 3.6.2 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 5.54.1 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.6.2 |
 
 ## Modules
 
@@ -50,7 +54,8 @@ No modules.
 | [aws_instance.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/resources/instance) | resource |
 | [aws_route53_record.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/resources/route53_record) | resource |
 | [aws_s3_bucket.ansible_bucket](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/resources/s3_bucket) | resource |
-| [aws_s3_bucket_object.openvpn_playbook](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/resources/s3_bucket_object) | resource |
+| [aws_s3_bucket_server_side_encryption_configuration.ansible_bucket](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/resources/s3_bucket_server_side_encryption_configuration) | resource |
+| [aws_s3_object.openvpn_playbook](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/resources/s3_object) | resource |
 | [aws_security_group.openvpn_mgmt](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/resources/security_group) | resource |
 | [aws_security_group.openvpn_user](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/resources/security_group) | resource |
 | [aws_ssm_association.openvpnas](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/resources/ssm_association) | resource |
@@ -64,6 +69,7 @@ No modules.
 | [aws_ssm_parameter.openvpnas_ldap_bind_pw](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/resources/ssm_parameter) | resource |
 | [aws_ssm_parameter.openvpnas_ldap_realm](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/resources/ssm_parameter) | resource |
 | [aws_ssm_parameter.openvpnas_ldap_server](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/resources/ssm_parameter) | resource |
+| [random_id.suffix](https://registry.terraform.io/providers/hashicorp/random/3.6.2/docs/resources/id) | resource |
 | [aws_ami.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/data-sources/ami) | data source |
 | [aws_iam_policy_document.iam_role](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.openvpn_ec2_assume](https://registry.terraform.io/providers/hashicorp/aws/5.54.1/docs/data-sources/iam_policy_document) | data source |
@@ -84,6 +90,7 @@ No modules.
 | <a name="input_clientaccess_cidr"></a> [clientaccess\_cidr](#input\_clientaccess\_cidr) | n/a | `list(any)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
 | <a name="input_configure_ldap"></a> [configure\_ldap](#input\_configure\_ldap) | Do you wish to enable LDAP configuration | `bool` | `false` | no |
 | <a name="input_configure_letsencrypt"></a> [configure\_letsencrypt](#input\_configure\_letsencrypt) | Do you wish to enable Letsencrupt | `bool` | `false` | no |
+| <a name="input_custom_suffix"></a> [custom\_suffix](#input\_custom\_suffix) | enter a suffix which will be tagged to all created objects, if not set a random one will be assigned | `string` | `null` | no |
 | <a name="input_environment_tag"></a> [environment\_tag](#input\_environment\_tag) | Define the type of environment | `string` | `""` | no |
 | <a name="input_instance_disk_encrypted"></a> [instance\_disk\_encrypted](#input\_instance\_disk\_encrypted) | Encrypt the EBS volumes | `bool` | `true` | no |
 | <a name="input_instance_disk_type"></a> [instance\_disk\_type](#input\_instance\_disk\_type) | Data disk type defaults to "gp2" disk type | `string` | `"gp2"` | no |
