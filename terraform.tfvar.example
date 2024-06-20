@@ -12,7 +12,6 @@ tags = {
 configure_letsencrypt     = false
 certificate_email         = "JBLOGGS@EXAMPLE.COM"
 openvpnas_dns             = "ovpn.example.com"
-
 admin_password            = "examplepassword"
 aws_account_id            = "000000000000"
 ldap_bind_pw              = "examplepassword" 
