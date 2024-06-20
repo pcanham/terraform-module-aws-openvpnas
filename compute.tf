@@ -40,7 +40,7 @@ resource "aws_instance" "openvpn" {
 }
 
 resource "aws_eip" "openvpn_ip" {
-  vpc      = true
+  domain   = "vpc"
   instance = aws_instance.openvpn.id
 
   tags = merge(
