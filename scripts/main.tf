@@ -1,6 +1,6 @@
 provider "aws" {
-  region                   = var.aws_region
-  }
+  region = var.aws_region
+}
 
 module "network" {
   source                = "git::https://github.com/pcanham/terraform-module-aws-vpc.git?ref=0.1.26"
@@ -13,10 +13,10 @@ module "network" {
   private_cidr_blocks01 = var.private_cidr_blocks01
   private_cidr_blocks02 = var.private_cidr_blocks02
   private_cidr_blocks03 = var.private_cidr_blocks03
-  public_tier_name = var.public_tier_name
-  private01_tier_name = var.private01_tier_name
-  private02_tier_name = var.private02_tier_name
-  private03_tier_name = var.private03_tier_name
+  public_tier_name      = var.public_tier_name
+  private01_tier_name   = var.private01_tier_name
+  private02_tier_name   = var.private02_tier_name
+  private03_tier_name   = var.private03_tier_name
 
   tags = merge(
     var.tags,
