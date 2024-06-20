@@ -99,3 +99,9 @@ variable "ssm_playbook_location" {
   description = "Playbook directory location which is uploaded to S3"
   default     = ""
 }
+
+variable "custom_suffix" {
+  type        = string
+  description = "enter a suffix which will be tagged to all created objects, if not set a random one will be assigned"
+  nullable    = true
+}

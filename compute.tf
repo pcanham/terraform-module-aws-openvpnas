@@ -34,14 +34,7 @@ resource "aws_instance" "openvpn" {
   }
   tags = merge(
     var.tags,
-    { "Name" = lower(
-      format(
-        "openvpn-%s-%s",
-        var.project_tag,
-        var.environment_tag,
-      ),
-      )
-    }
+    { "Name" = lower(var.openvpnas_dns) }
   )
   volume_tags = var.tags
 }
@@ -52,13 +45,6 @@ resource "aws_eip" "openvpn_ip" {
 
   tags = merge(
     var.tags,
-    { "Name" = lower(
-      format(
-        "openvpn-eip-%s-%s",
-        var.project_tag,
-        var.environment_tag,
-      ),
-      )
-    }
+    { "Name" = lower(var.openvpnas_dns) }
   )
 }

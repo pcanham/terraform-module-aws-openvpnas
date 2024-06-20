@@ -19,7 +19,7 @@ data "aws_iam_policy_document" "openvpn_ec2_assume" {
 }
 
 resource "aws_iam_role" "openvpn" {
-  name               = "openvpn"
+  name               = format("openvpn-%s", local.suffix)
   assume_role_policy = data.aws_iam_policy_document.openvpn_ec2_assume.json
   tags = merge(
     var.tags,
@@ -57,7 +57,7 @@ data "aws_iam_policy_document" "iam_role" {
 }
 
 resource "aws_iam_role_policy" "openvpn" {
-  name   = "openvpn_r53"
+  name   = format("openvpn_r53-%s", local.suffix)
   role   = aws_iam_role.openvpn.id
   policy = data.aws_iam_policy_document.iam_role.json
 }
@@ -86,7 +86,7 @@ data "aws_iam_policy_document" "ssm_s3_access" {
 }
 
 resource "aws_iam_policy" "ssm_s3_access" {
-  name   = "openvpnas_s3_ssm_access"
+  name   = format("openvpnas_s3_ssm_access-%s", local.suffix)
   policy = data.aws_iam_policy_document.ssm_s3_access.json
 }
 
@@ -106,6 +106,6 @@ resource "aws_iam_role_policy_attachment" "ssm_role_policy02" {
 }
 
 resource "aws_iam_instance_profile" "openvpn" {
-  name = "openvpn"
+  name = format("openvpn-%s", local.suffix)
   role = aws_iam_role.openvpn.name
 }

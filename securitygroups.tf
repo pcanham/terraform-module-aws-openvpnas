@@ -1,5 +1,5 @@
 resource "aws_security_group" "openvpn_user" {
-  name        = "openvpn_user"
+  name        = format("openvpn_user-%s", local.suffix)
   description = "Allow traffic needed by openvpn"
   vpc_id      = var.vpc_id
   tags        = var.tags
@@ -33,7 +33,7 @@ resource "aws_security_group" "openvpn_user" {
 }
 
 resource "aws_security_group" "openvpn_mgmt" {
-  name        = "openvpn_mgmt"
+  name        = format("openvpn_mgmt-%s", local.suffix)
   description = "Allow traffic needed by openvpn"
   vpc_id      = var.vpc_id
   tags        = var.tags
