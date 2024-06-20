@@ -41,22 +41,22 @@ def create_default_vpc_if_not_exist(client):
     check_vpc = check_for_vpc(client)
     if check_vpc:
         logger.info("Has default VPC. Skipping create.")
-        logger.info(check_vpc['VpcId'])
-        print(check_vpc['VpcId'])
+        logger.info(check_vpc["VpcId"])
+        print(check_vpc["VpcId"])
         return
 
     logger.info("Does not have default VPC. Creating.")
     vpc = create_default_vpc(client)
     logger.info("Created VPC {vpc['VpcId']}")
-    print(vpc['VpcId'])
+    print(vpc["VpcId"])
 
 
 if __name__ == "__main__":
     create_default_vpc_if_not_exist(client)
     sn_all = client.describe_subnets()
-    for sn in sn_all['Subnets'] :
+    for sn in sn_all["Subnets"]:
         print(sn)
-        print(sn['SubnetId'], end='')
-        for tag in sn['Tags']:
-            if tag['Key'] == 'Name':
-                print('\t' + tag['Value'])
+        print(sn["SubnetId"], end="")
+        for tag in sn["Tags"]:
+            if tag["Key"] == "Name":
+                print("\t" + tag["Value"])
