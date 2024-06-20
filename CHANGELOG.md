@@ -1,3 +1,10 @@
+## [0.1.2](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/compare/0.1.1...0.1.2) (2024-06-20)
+
+
+### Bug Fixes
+
+* deprecated setting for server side encryption ([5d8d386](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/commit/5d8d3868e519fb537e41af64a2ae78023512f22e))
+
 ## [0.1.1](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/compare/0.1.0...0.1.1) (2024-06-20)
 
 
