@@ -28,3 +28,7 @@ module "network" {
   project_tag     = var.project_tag
   k8s_clustername = var.k8s_clustername
 }
+
+resource "aws_route53_zone" "primary" {
+  name = "example.com"
+}
