@@ -20,4 +20,3 @@ vpc_id                    = "vpc-12345678"
 public_subnet_id          = "subnet-abcd1234" 
 route53_zone_name         = "example.com" 
 s3_bucket_name            = "example_buvcket"
-
