@@ -1,3 +1,23 @@
+## [0.1.3](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/compare/0.1.2...0.1.3) (2024-07-05)
+
+
+### Bug Fixes
+
+* [skip ci] remove unused variable ([96b633f](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/commit/96b633f2b75fb7e768ab453dacdf162d77d5c1e6))
+* add in missing variable for example ([d9fcbfa](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/commit/d9fcbfacc988281fc43b4d9750325c14f050e53c))
+* disable tflint due to version mismatches ([ae9be46](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/commit/ae9be46fbe3a2ee3aae187943e0d66ef45a0e6fa))
+* move to main to fix aws provider version mismatch ([d7c1a10](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/commit/d7c1a10a7643ce4386ce52a3698ff3b60221cab6))
+* reformat required_version ([fb4862c](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/commit/fb4862c6800686890d11817843a12c20942e62df))
+* remove unused variables ([ccbaf90](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/commit/ccbaf902b42f2e0af4326263f9091a17762e0424))
+* **lint:** tflint errors regarding missing versions of terraform and providers ([bb1270c](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/commit/bb1270c67c475cf14c0d1d39eb57040b9619add5))
+
+
+### Features
+
+* add exclusion for localstack config ([d25ef5c](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/commit/d25ef5cb9e7aee91a529460a65fae50a1ba04358))
+* add in config for gitleaks ([89bb123](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/commit/89bb12321fa5c149e025ce7d2e5eacd5682d5e94))
+* add in exclusion for localstack ([dccb553](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/commit/dccb553f9f6fd103a3e572a3eb532926263d784d))
+
 ## [0.1.2](https://gitlab.localrealm.net/automation/terraform/terraform-modules/terraform-module-aws-openvpnas/compare/0.1.1...0.1.2) (2024-06-20)
 
 
