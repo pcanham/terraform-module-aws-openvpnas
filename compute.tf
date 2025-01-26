@@ -25,6 +25,9 @@ resource "aws_instance" "openvpn" {
   subnet_id              = var.public_subnet_id
   vpc_security_group_ids = [aws_security_group.openvpn_user.id, aws_security_group.openvpn_mgmt.id]
   iam_instance_profile   = aws_iam_instance_profile.openvpn.name
+  metadata_options {
+    http_tokens = "required"
+  }
   #tfsec:ignore:AWS012
   associate_public_ip_address = true
   source_dest_check           = false
