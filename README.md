@@ -25,17 +25,17 @@ Additional applications will need to be installed to your machine if you wish to
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.56.1 |
-| <a name="requirement_local"></a> [local](#requirement\_local) | 2.5.1 |
-| <a name="requirement_null"></a> [null](#requirement\_null) | 3.2.2 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | 3.6.2 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.84.0 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | 2.5.2 |
+| <a name="requirement_null"></a> [null](#requirement\_null) | 3.2.3 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | 3.6.3 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.47.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.6.2 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.84.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.6.3 |
 
 ## Modules
 
@@ -45,40 +45,40 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_eip.openvpn_ip](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/eip) | resource |
-| [aws_iam_instance_profile.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/iam_instance_profile) | resource |
-| [aws_iam_policy.ssm_s3_access](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/iam_policy) | resource |
-| [aws_iam_role.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/iam_role_policy) | resource |
-| [aws_iam_role_policy_attachment.ssm_role_policy01](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.ssm_role_policy02](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.ssm_s3_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_instance.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/instance) | resource |
-| [aws_route53_record.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/route53_record) | resource |
-| [aws_s3_bucket.ansible_bucket](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/s3_bucket) | resource |
-| [aws_s3_bucket_acl.ansible_bucket](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/s3_bucket_acl) | resource |
-| [aws_s3_bucket_ownership_controls.ansible_bucket](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/s3_bucket_ownership_controls) | resource |
-| [aws_s3_bucket_server_side_encryption_configuration.ansible_bucket](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/s3_bucket_server_side_encryption_configuration) | resource |
-| [aws_s3_object.openvpn_playbook](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/s3_object) | resource |
-| [aws_security_group.openvpn_mgmt](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/security_group) | resource |
-| [aws_security_group.openvpn_user](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/security_group) | resource |
-| [aws_ssm_association.openvpnas](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/ssm_association) | resource |
-| [aws_ssm_parameter.certificate_email](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/ssm_parameter) | resource |
-| [aws_ssm_parameter.openvpnas_admin_password](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/ssm_parameter) | resource |
-| [aws_ssm_parameter.openvpnas_admin_user](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/ssm_parameter) | resource |
-| [aws_ssm_parameter.openvpnas_dns](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/ssm_parameter) | resource |
-| [aws_ssm_parameter.openvpnas_ldap_add_req](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/ssm_parameter) | resource |
-| [aws_ssm_parameter.openvpnas_ldap_base_dn](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/ssm_parameter) | resource |
-| [aws_ssm_parameter.openvpnas_ldap_bind_dn](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/ssm_parameter) | resource |
-| [aws_ssm_parameter.openvpnas_ldap_bind_pw](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/ssm_parameter) | resource |
-| [aws_ssm_parameter.openvpnas_ldap_realm](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/ssm_parameter) | resource |
-| [aws_ssm_parameter.openvpnas_ldap_server](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/resources/ssm_parameter) | resource |
-| [random_id.suffix](https://registry.terraform.io/providers/hashicorp/random/3.6.2/docs/resources/id) | resource |
-| [aws_ami.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/data-sources/ami) | data source |
-| [aws_iam_policy_document.iam_role](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.openvpn_ec2_assume](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.ssm_s3_access](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/data-sources/iam_policy_document) | data source |
-| [aws_route53_zone.main](https://registry.terraform.io/providers/hashicorp/aws/5.56.1/docs/data-sources/route53_zone) | data source |
+| [aws_eip.openvpn_ip](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/eip) | resource |
+| [aws_iam_instance_profile.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/iam_instance_profile) | resource |
+| [aws_iam_policy.ssm_s3_access](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/iam_policy) | resource |
+| [aws_iam_role.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/iam_role_policy) | resource |
+| [aws_iam_role_policy_attachment.ssm_role_policy01](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.ssm_role_policy02](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.ssm_s3_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_instance.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/instance) | resource |
+| [aws_route53_record.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/route53_record) | resource |
+| [aws_s3_bucket.ansible_bucket](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/s3_bucket) | resource |
+| [aws_s3_bucket_acl.ansible_bucket](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/s3_bucket_acl) | resource |
+| [aws_s3_bucket_ownership_controls.ansible_bucket](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/s3_bucket_ownership_controls) | resource |
+| [aws_s3_bucket_server_side_encryption_configuration.ansible_bucket](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/s3_bucket_server_side_encryption_configuration) | resource |
+| [aws_s3_object.openvpn_playbook](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/s3_object) | resource |
+| [aws_security_group.openvpn_mgmt](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/security_group) | resource |
+| [aws_security_group.openvpn_user](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/security_group) | resource |
+| [aws_ssm_association.openvpnas](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/ssm_association) | resource |
+| [aws_ssm_parameter.certificate_email](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/ssm_parameter) | resource |
+| [aws_ssm_parameter.openvpnas_admin_password](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/ssm_parameter) | resource |
+| [aws_ssm_parameter.openvpnas_admin_user](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/ssm_parameter) | resource |
+| [aws_ssm_parameter.openvpnas_dns](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/ssm_parameter) | resource |
+| [aws_ssm_parameter.openvpnas_ldap_add_req](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/ssm_parameter) | resource |
+| [aws_ssm_parameter.openvpnas_ldap_base_dn](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/ssm_parameter) | resource |
+| [aws_ssm_parameter.openvpnas_ldap_bind_dn](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/ssm_parameter) | resource |
+| [aws_ssm_parameter.openvpnas_ldap_bind_pw](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/ssm_parameter) | resource |
+| [aws_ssm_parameter.openvpnas_ldap_realm](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/ssm_parameter) | resource |
+| [aws_ssm_parameter.openvpnas_ldap_server](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/ssm_parameter) | resource |
+| [random_id.suffix](https://registry.terraform.io/providers/hashicorp/random/3.6.3/docs/resources/id) | resource |
+| [aws_ami.openvpn](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/data-sources/ami) | data source |
+| [aws_iam_policy_document.iam_role](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.openvpn_ec2_assume](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.ssm_s3_access](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_route53_zone.main](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/data-sources/route53_zone) | data source |
 
 ## Inputs
 

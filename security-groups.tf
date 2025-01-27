@@ -11,6 +11,7 @@ resource "aws_security_group" "openvpn_user" {
     protocol  = "tcp"
     #tfsec:ignore:AWS008
     cidr_blocks = var.clientaccess_cidr
+    description = "Allow HTTPS traffic from client"
   }
 
   // open vpn udp
@@ -20,6 +21,7 @@ resource "aws_security_group" "openvpn_user" {
     protocol  = "udp"
     #tfsec:ignore:AWS008
     cidr_blocks = var.clientaccess_cidr
+    description = "Allow OpenVPN UDP traffic from client"
   }
 
   // all outbound traffic
@@ -45,6 +47,7 @@ resource "aws_security_group" "openvpn_mgmt" {
     protocol  = "tcp"
     #tfsec:ignore:AWS008
     cidr_blocks = var.adminaccess_cidr
+    description = "Allow HTTPS traffic from admin"
   }
 
   // open vpn udp
@@ -54,6 +57,7 @@ resource "aws_security_group" "openvpn_mgmt" {
     protocol  = "tcp"
     #tfsec:ignore:AWS008
     cidr_blocks = var.adminaccess_cidr
+    description = "Allow SSH traffic"
   }
 
   // all outbound traffic
