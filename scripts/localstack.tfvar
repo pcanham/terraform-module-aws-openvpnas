@@ -2,7 +2,6 @@ aws_region = "eu-west-1"
 availability_zones = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
 master_cidr_block = "10.98.0.0/20"
 nat_gateway = true
-single_nat_gateway = false
 
 ## 4 AZ 4 tier's example
 public_cidr_blocks = ["10.98.0.0/25", "10.98.0.128/25", "10.98.1.0/25", "10.98.1.128/25"]
