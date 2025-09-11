@@ -45,16 +45,6 @@ variable "tags" {
   default     = {}
 }
 
-variable "environment_tag" {
-  type        = string
-  description = "Define the type of environment"
-}
-
-variable "project_tag" {
-  type        = string
-  description = "Project code name or name"
-}
-
 variable "public_tier_name" {
   type        = string
   description = "Tag value for name of subnet tier"

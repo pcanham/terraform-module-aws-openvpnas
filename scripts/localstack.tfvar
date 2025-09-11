@@ -27,6 +27,3 @@ tags = {
     BUSINESS              = "TECHNOLOGY"
     AUTOMATION            = "Created with Terraform"
 }
-
-environment_tag = "PRODUCTION"
-project_tag = "CFG-MGMT"

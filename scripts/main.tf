@@ -24,8 +24,6 @@ module "network" {
       "SERVICE" = "VPC"
     }
   )
-  environment_tag = var.environment_tag
-  project_tag     = var.project_tag
   k8s_clustername = var.k8s_clustername
 }
 
