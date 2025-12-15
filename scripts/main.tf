@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "network" {
-  source                = "git::https://github.com/pcanham/terraform-module-aws-vpc.git?ref=0.1.38"
+  source                = "git::https://github.com/pcanham/terraform-module-aws-vpc.git?ref=1.0.0"
   aws_region            = var.aws_region
   availability_zones    = var.availability_zones
   master_cidr_block     = var.master_cidr_block
